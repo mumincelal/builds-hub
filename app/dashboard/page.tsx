@@ -53,6 +53,7 @@ const Dashboard = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
+      {JSON.stringify(session)}
     </div>
   );
 };
