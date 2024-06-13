@@ -9,12 +9,15 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
+  ScrollArea
 } from '@/components/ui';
+import { useUserRepos } from '@/queries';
 import { abbreviate } from '@/utils/string';
 
 const Dashboard = () => {
   const session = useSession();
+  const { data: userRepos } = useUserRepos();
 
   // const handleSignOut = async () => {
   //   await signOut({
@@ -53,7 +56,16 @@ const Dashboard = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
-      {JSON.stringify(session)}
+      <ScrollArea className="h-96 border">
+        {userRepos?.map((userRepo) => (
+          <div key={userRepo.id} className="border-b p-4">
+            <Link href={`/repo/${userRepo.id}`}>
+              <span className="text-lg font-bold">{userRepo.name}</span>
+            </Link>
+            <p>{userRepo.description}</p>
+          </div>
+        ))}
+      </ScrollArea>
     </div>
   );
 };
