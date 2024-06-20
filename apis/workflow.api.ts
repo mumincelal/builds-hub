@@ -1,15 +1,17 @@
 import { AxiosError, HttpStatusCode } from 'axios';
 import { axiosInstance } from '@/apis/base.api';
-import { GitHubRepo } from '@/types/github-api';
+import { GitHubWorkflows } from '@/types/github-api';
 
-export const getRepos = async () => {
+export const getWorkflows = async (owner: string, repo: string) => {
   try {
-    const response = await axiosInstance.get<GitHubRepo[]>('/user/repos');
+    const response = await axiosInstance.get<GitHubWorkflows>(
+      `/repos/${owner}/${repo}/workflows`
+    );
 
     if (response.status === HttpStatusCode.Ok) {
-      const repos = response.data;
+      const { workflows } = response.data;
 
-      return repos;
+      return workflows;
     }
 
     return [];

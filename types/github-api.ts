@@ -117,3 +117,78 @@ export type GitHubRepo = {
   default_branch: string;
   permissions: GitHubPermissions;
 };
+
+export type GitHubWorkflows = {
+  total_count: number;
+  workflows: GitHubWorkflow[];
+};
+
+export type GitHubWorkflow = {
+  id: number;
+  node_id: string;
+  name: string;
+  path: string;
+  state: string;
+  created_at: string;
+  updated_at: string;
+  url: string;
+  html_url: string;
+  badge_url: string;
+};
+
+export type GitHubWorkflowRuns = {
+  total_count: number;
+  workflow_runs: GitHubWorkflowRun[];
+};
+
+export type GitHubUser = {
+  name: string;
+  email: string;
+};
+
+export type GitHubHeadCommit = {
+  id: string;
+  tree_id: string;
+  message: string;
+  timestamp: string;
+  author: GitHubUser;
+  committer: GitHubUser;
+};
+
+export type GitHubWorkflowRun = {
+  id: number;
+  name: string;
+  node_id: string;
+  head_branch: string;
+  head_sha: string;
+  path: string;
+  display_title: string;
+  run_number: number;
+  event: string;
+  status: string;
+  conclusion: string;
+  workflow_id: number;
+  check_suite_id: number;
+  check_suite_node_id: string;
+  url: string;
+  html_url: string;
+  pull_requests?: unknown[];
+  created_at: string;
+  updated_at: string;
+  actor: GitHubOwner;
+  run_attempt: number;
+  referenced_workflows?: unknown[];
+  run_started_at: string;
+  triggering_actor: GitHubOwner;
+  jobs_url: string;
+  logs_url: string;
+  check_suite_url: string;
+  artifacts_url: string;
+  cancel_url: string;
+  rerun_url: string;
+  previous_attempt_url?: string;
+  workflow_url: string;
+  head_commit: GitHubHeadCommit;
+  repository: GitHubRepo;
+  head_repository: GitHubRepo;
+};

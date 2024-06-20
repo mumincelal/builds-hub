@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { Repo, getUserRepos } from '@/apis/repo.api';
+import { getRepos } from '@/apis/repo.api';
+import { GitHubRepo } from '@/types/github-api';
 
-export const useUserRepos = () =>
-  useQuery<Repo[] | undefined, Error>({
+export const useRepos = () =>
+  useQuery<GitHubRepo[] | undefined, Error>({
     queryKey: ['repo'],
-    queryFn: () => getUserRepos()
+    queryFn: () => getRepos()
   });

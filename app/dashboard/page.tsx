@@ -12,12 +12,12 @@ import {
   DropdownMenuTrigger,
   ScrollArea
 } from '@/components/ui';
-import { useUserRepos } from '@/queries';
+import { useRepos } from '@/queries';
 import { abbreviate } from '@/utils/string';
 
 const Dashboard = () => {
   const session = useSession();
-  const { data: userRepos } = useUserRepos();
+  const { data: userRepos } = useRepos();
 
   // const handleSignOut = async () => {
   //   await signOut({
@@ -62,7 +62,7 @@ const Dashboard = () => {
             <Link href={`/repo/${userRepo.id}`}>
               <span className="text-lg font-bold">{userRepo.name}</span>
             </Link>
-            <p>{userRepo.description}</p>
+            <p>{JSON.stringify(userRepo.owner)}</p>
           </div>
         ))}
       </ScrollArea>
