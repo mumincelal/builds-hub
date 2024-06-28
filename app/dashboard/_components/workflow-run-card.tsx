@@ -2,7 +2,7 @@ import {
   CounterClockwiseClockIcon,
   StopwatchIcon
 } from '@radix-ui/react-icons';
-import React, { useLayoutEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   Badge,
   Card,
@@ -18,18 +18,21 @@ import { getRelativeTime, getTimeDifference } from '@/utils/date';
 export type WorkflowRunCardProps = Readonly<{ run: GitHubWorkflowRun }>;
 
 export const WorkflowRunCard = ({ run }: WorkflowRunCardProps) => {
-  const [enabled, setEnabled] = React.useState(run.conclusion === null);
+  const queryClient = useQueryClient();
 
   const { data } = useWorkflowRun(
+    run.id.toString(),
     run.repository.owner.login,
     run.repository.name,
     run.id,
-    enabled
+    run.conclusion === null
   );
 
   run = data ?? run;
 
-  useLayoutEffect(() => setEnabled(run.conclusion !== null), [run.conclusion]);
+  if (run.conclusion !== null) {
+    queryClient.cancelQueries({ queryKey: [run.id.toString()] });
+  }
 
   return (
     <Card key={run.id}>

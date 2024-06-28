@@ -4,18 +4,20 @@ import { GitHubWorkflowRun, GitHubWorkflowRuns } from '@/types/github-api';
 
 export const useWorkflowRuns = (owner: string, repo: string) =>
   useQuery<GitHubWorkflowRuns, Error>({
-    queryKey: ['workflowRuns', owner, repo],
-    queryFn: () => getWorkflowRuns(owner, repo)
+    queryKey: ['workflowRun', owner, repo],
+    queryFn: () => getWorkflowRuns(owner, repo),
+    refetchInterval: 60000
   });
 
 export const useWorkflowRun = (
+  queryKey: string,
   owner: string,
   repo: string,
   runId: number,
   enabled: boolean
 ) =>
   useQuery<GitHubWorkflowRun | undefined, Error>({
-    queryKey: ['workflowRun', owner, repo, runId],
+    queryKey: [queryKey, owner, repo, runId],
     queryFn: () => getWorkflowRun(owner, repo, runId),
     refetchInterval: 5000,
     enabled
