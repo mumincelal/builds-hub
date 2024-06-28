@@ -14,8 +14,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle,
-  ScrollArea
+  DialogTitle
 } from '@/components/ui';
 import { GitHubRepo } from '@/types/github-api';
 
@@ -61,9 +60,7 @@ export const RepoCard = ({ repo }: RepoCardProps) => {
           <DialogHeader>
             <DialogTitle>Workflows</DialogTitle>
           </DialogHeader>
-          <ScrollArea>
-            <WorkflowRunList repo={repo} />
-          </ScrollArea>
+          <WorkflowRunList repo={repo} />
         </DialogContent>
       </Dialog>
     </>

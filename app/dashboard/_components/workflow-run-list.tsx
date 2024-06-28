@@ -1,19 +1,24 @@
+import { UpdateIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import React from 'react';
 import { WorkflowRunCard } from '@/app/dashboard/_components/workflow-run-card';
 import { Loading } from '@/components/loading';
+import { Button, ScrollArea } from '@/components/ui';
 import { useWorkflowRuns } from '@/queries';
 import { GitHubRepo } from '@/types/github-api';
+import { cn } from '@/utils/tailwind';
 
 export type WorkflowRunListProps = Readonly<{
   repo: GitHubRepo;
 }>;
 
 export const WorkflowRunList = ({ repo }: WorkflowRunListProps) => {
-  const { data: workflowRuns, isLoading } = useWorkflowRuns(
-    repo.owner.login,
-    repo.name
-  );
+  const {
+    data: workflowRuns,
+    isLoading,
+    refetch,
+    isFetching
+  } = useWorkflowRuns(repo.owner.login, repo.name);
 
   if (isLoading) {
     return <Loading />;
@@ -42,10 +47,22 @@ export const WorkflowRunList = ({ repo }: WorkflowRunListProps) => {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-2">
-      {workflowRuns.workflow_runs.map((run) => (
-        <WorkflowRunCard key={run.id} run={run} />
-      ))}
+    <div className="grid space-y-2">
+      <Button className="place-self-end" size="sm" onClick={() => refetch()}>
+        <UpdateIcon
+          className={cn('mr-2 size-4 tracking-tight', {
+            'animate-spin': isFetching
+          })}
+        />{' '}
+        {isFetching ? 'Updating...' : 'Update'}
+      </Button>
+      <ScrollArea className="h-2/6 lg:h-[58%]">
+        <div className="grid grid-cols-1 gap-2">
+          {workflowRuns.workflow_runs.map((run) => (
+            <WorkflowRunCard key={run.id} run={run} />
+          ))}
+        </div>
+      </ScrollArea>
     </div>
   );
 };
