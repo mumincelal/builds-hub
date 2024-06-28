@@ -1,6 +1,6 @@
 import { AxiosError, HttpStatusCode } from 'axios';
 import { axiosInstance } from '@/apis/base.api';
-import { GitHubWorkflowRuns } from '@/types/github-api';
+import { GitHubWorkflowRun, GitHubWorkflowRuns } from '@/types/github-api';
 
 export const getWorkflowRuns = async (
   owner: string,
@@ -22,5 +22,27 @@ export const getWorkflowRuns = async (
     }
 
     throw new Error('An error occurred while fetching workflow runs');
+  }
+};
+
+export const getWorkflowRun = async (
+  owner: string,
+  repo: string,
+  runId: number
+): Promise<GitHubWorkflowRun | undefined> => {
+  try {
+    const response = await axiosInstance.get<GitHubWorkflowRun>(
+      `/repos/${owner}/${repo}/actions/runs/${runId}`
+    );
+
+    if (response.status === HttpStatusCode.Ok) {
+      return response.data;
+    }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      throw new Error(error.response?.data.message);
+    }
+
+    throw new Error('An error occurred while fetching workflow run');
   }
 };
