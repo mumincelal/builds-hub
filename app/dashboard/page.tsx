@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import React from 'react';
+import { RepoCard } from '@/app/dashboard/_components';
 import {
   Avatar,
   AvatarFallback,
@@ -9,15 +11,14 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-  ScrollArea
+  DropdownMenuTrigger
 } from '@/components/ui';
 import { useRepos } from '@/queries';
 import { abbreviate } from '@/utils/string';
 
 const Dashboard = () => {
   const session = useSession();
-  const { data: userRepos } = useRepos();
+  const { data: repos } = useRepos();
 
   // const handleSignOut = async () => {
   //   await signOut({
@@ -30,7 +31,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="bg-background sticky top-0 flex h-16 items-center justify-between border-b px-6">
+      <header className="sticky top-0 flex h-16 items-center justify-between border-b bg-white px-6">
         <nav className="flex items-center">
           <Link href="/dashboard">
             <span className="cursor-pointer text-xl font-bold uppercase">
@@ -56,16 +57,11 @@ const Dashboard = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
-      <ScrollArea className="h-96 border">
-        {userRepos?.map((userRepo) => (
-          <div key={userRepo.id} className="border-b p-4">
-            <Link href={`/repo/${userRepo.id}`}>
-              <span className="text-lg font-bold">{userRepo.name}</span>
-            </Link>
-            <p>{JSON.stringify(userRepo.owner)}</p>
-          </div>
-        ))}
-      </ScrollArea>
+      <div className="p-6">
+        <div className="grid grid-cols-4 gap-4">
+          {repos?.map((repo) => <RepoCard key={repo.id} repo={repo} />)}
+        </div>
+      </div>
     </div>
   );
 };

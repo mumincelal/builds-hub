@@ -3,3 +3,8 @@ export * from './card';
 export * from './dropdown-menu';
 export * from './avatar';
 export * from './scroll-area';
+export * from './collapsible';
+export * from './badge';
+export * from './skeleton';
+export * from './card';
+export * from './dialog';

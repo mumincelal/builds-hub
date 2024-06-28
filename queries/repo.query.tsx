@@ -3,7 +3,7 @@ import { getRepos } from '@/apis/repo.api';
 import { GitHubRepo } from '@/types/github-api';
 
 export const useRepos = () =>
-  useQuery<GitHubRepo[] | undefined, Error>({
+  useQuery<GitHubRepo[], Error>({
     queryKey: ['repo'],
-    queryFn: () => getRepos()
+    queryFn: getRepos
   });

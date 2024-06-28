@@ -43,7 +43,7 @@ export type GitHubRepo = {
   private: boolean;
   owner: GitHubOwner;
   html_url: string;
-  description: string;
+  description?: string;
   fork: boolean;
   url: string;
   forks_url: string;
@@ -93,7 +93,7 @@ export type GitHubRepo = {
   size: number;
   stargazers_count: number;
   watchers_count: number;
-  language: string;
+  language?: string;
   has_issues: boolean;
   has_projects: boolean;
   has_downloads: boolean;
