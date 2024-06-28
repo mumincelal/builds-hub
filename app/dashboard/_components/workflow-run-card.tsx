@@ -18,7 +18,7 @@ import { getRelativeTime, getTimeDifference } from '@/utils/date';
 export type WorkflowRunCardProps = Readonly<{ run: GitHubWorkflowRun }>;
 
 export const WorkflowRunCard = ({ run }: WorkflowRunCardProps) => {
-  const [enabled, setEnabled] = React.useState(!!run.conclusion);
+  const [enabled, setEnabled] = React.useState(run.conclusion === null);
 
   const { data } = useWorkflowRun(
     run.repository.owner.login,
@@ -29,7 +29,7 @@ export const WorkflowRunCard = ({ run }: WorkflowRunCardProps) => {
 
   run = data ?? run;
 
-  useLayoutEffect(() => setEnabled(!!run.conclusion), [run.conclusion]);
+  useLayoutEffect(() => setEnabled(run.conclusion !== null), [run.conclusion]);
 
   return (
     <Card key={run.id}>
