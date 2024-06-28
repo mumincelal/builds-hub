@@ -1,4 +1,7 @@
-import { StopwatchIcon } from '@radix-ui/react-icons';
+import {
+  CounterClockwiseClockIcon,
+  StopwatchIcon
+} from '@radix-ui/react-icons';
 import {
   Badge,
   Card,
@@ -15,10 +18,12 @@ export type WorkflowRunCardProps = Readonly<{ run: GitHubWorkflowRun }>;
 export const WorkflowRunCard = ({ run }: WorkflowRunCardProps) => (
   <Card key={run.id}>
     <CardHeader>
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between gap-4 space-y-0 text-balance">
         <div className="space-y-1">
           <CardTitle>{run.name}</CardTitle>
-          <CardDescription>{run.head_commit.message}</CardDescription>
+          <CardDescription className="hidden md:block">
+            {run.head_commit.message}
+          </CardDescription>
         </div>
         <div className="flex flex-col items-center gap-1">
           <Badge
@@ -33,7 +38,7 @@ export const WorkflowRunCard = ({ run }: WorkflowRunCardProps) => (
             {run.conclusion ?? run.status}
           </Badge>
           <div className="flex items-center gap-1">
-            <StopwatchIcon className="size-3" />
+            <StopwatchIcon className="hidden size-3 md:inline-block" />
             <p className="text-xs">
               {getTimeDifference(run.created_at, run.updated_at)}
             </p>
@@ -44,7 +49,12 @@ export const WorkflowRunCard = ({ run }: WorkflowRunCardProps) => (
     <CardContent>
       <div className="flex items-center justify-between">
         <Badge variant="outline">{run.head_branch}</Badge>
-        <p className="text-xs">{getRelativeTime(run.head_commit.timestamp)}</p>
+        <div className="hidden items-center gap-1 md:flex">
+          <CounterClockwiseClockIcon className="size-3" />
+          <p className="text-xs">
+            {getRelativeTime(run.head_commit.timestamp)}
+          </p>
+        </div>
       </div>
     </CardContent>
   </Card>

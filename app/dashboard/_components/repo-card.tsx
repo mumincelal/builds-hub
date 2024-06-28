@@ -30,7 +30,7 @@ export const RepoCard = ({ repo }: RepoCardProps) => {
         <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0 text-balance">
           <div className="space-y-1">
             <CardTitle>{repo.name}</CardTitle>
-            <CardDescription>
+            <CardDescription className="hidden md:block">
               {repo.description ?? 'No description'}
             </CardDescription>
           </div>

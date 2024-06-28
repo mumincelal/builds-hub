@@ -58,7 +58,7 @@ const Dashboard = () => {
         </DropdownMenu>
       </header>
       <div className="p-6">
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {repos?.map((repo) => <RepoCard key={repo.id} repo={repo} />)}
         </div>
       </div>
