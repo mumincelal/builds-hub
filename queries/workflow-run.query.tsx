@@ -12,12 +12,10 @@ export const useWorkflowRun = (
   queryKey: string,
   owner: string,
   repo: string,
-  runId: number,
-  enabled: boolean
+  runId: number
 ) =>
   useQuery<GitHubWorkflowRun | undefined, Error>({
     queryKey: [queryKey, owner, repo, runId],
     queryFn: () => getWorkflowRun(owner, repo, runId),
-    refetchInterval: 5000,
-    enabled
+    refetchInterval: 10000
   });

@@ -20,18 +20,20 @@ export type WorkflowRunCardProps = Readonly<{ run: GitHubWorkflowRun }>;
 export const WorkflowRunCard = ({ run }: WorkflowRunCardProps) => {
   const queryClient = useQueryClient();
 
+  const runId = run.id;
+  const queryKey = runId.toString();
+
   const { data } = useWorkflowRun(
-    run.id.toString(),
+    queryKey,
     run.repository.owner.login,
     run.repository.name,
-    run.id,
-    run.conclusion === null
+    runId
   );
 
   run = data ?? run;
 
   if (run.conclusion !== null) {
-    queryClient.cancelQueries({ queryKey: [run.id.toString()] });
+    queryClient.cancelQueries({ queryKey: [queryKey] });
   }
 
   return (
