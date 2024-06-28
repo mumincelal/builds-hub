@@ -2,6 +2,7 @@ import {
   CounterClockwiseClockIcon,
   StopwatchIcon
 } from '@radix-ui/react-icons';
+import React, { useLayoutEffect } from 'react';
 import {
   Badge,
   Card,
@@ -17,14 +18,18 @@ import { getRelativeTime, getTimeDifference } from '@/utils/date';
 export type WorkflowRunCardProps = Readonly<{ run: GitHubWorkflowRun }>;
 
 export const WorkflowRunCard = ({ run }: WorkflowRunCardProps) => {
+  const [enabled, setEnabled] = React.useState(!!run.conclusion);
+
   const { data } = useWorkflowRun(
     run.repository.owner.login,
     run.repository.name,
     run.id,
-    run.conclusion !== 'success' && run.conclusion !== 'failure'
+    enabled
   );
 
   run = data ?? run;
+
+  useLayoutEffect(() => setEnabled(!!run.conclusion), [run.conclusion]);
 
   return (
     <Card key={run.id}>
