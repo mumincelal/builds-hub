@@ -15,6 +15,12 @@ const authOptions: AuthOptions = {
       }
     })
   ],
+  session: {
+    strategy: 'jwt'
+  },
+  pages: {
+    signIn: '/'
+  },
   callbacks: {
     async jwt({ token, account }) {
       if (account) {

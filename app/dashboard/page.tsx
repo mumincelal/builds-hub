@@ -1,33 +1,17 @@
 'use client';
 
+import { ExitIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
 import { RepoCard } from '@/app/dashboard/_components';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@/components/ui';
+import { Avatar, AvatarFallback, AvatarImage, Button } from '@/components/ui';
 import { useRepos } from '@/queries';
 import { abbreviate } from '@/utils/string';
 
 const Dashboard = () => {
   const session = useSession();
   const { data: repos } = useRepos();
-
-  // const handleSignOut = async () => {
-  //   await signOut({
-  //     callbackUrl: '/',
-  //     redirect: false
-  //   });
-
-  //   router.push('/');
-  // };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -40,22 +24,20 @@ const Dashboard = () => {
             <span className="sr-only">Builds Hub</span>
           </Link>
         </nav>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Avatar>
-              <AvatarImage
-                src={session.data?.user?.image ?? undefined}
-                alt={session.data?.user?.name ?? undefined}
-              />
-              <AvatarFallback>
-                {abbreviate(session.data?.user?.name ?? '')}
-              </AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem>Logout</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex items-center gap-2">
+          <Avatar>
+            <AvatarImage
+              src={session.data?.user?.image ?? undefined}
+              alt={session.data?.user?.name ?? undefined}
+            />
+            <AvatarFallback>
+              {abbreviate(session.data?.user?.name ?? '')}
+            </AvatarFallback>
+          </Avatar>
+          <Button variant="ghost" size="sm" onClick={() => signOut()}>
+            <ExitIcon className="mr-2 size-4" /> Logout
+          </Button>
+        </div>
       </header>
       <div className="p-6">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
