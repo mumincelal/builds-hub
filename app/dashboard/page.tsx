@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 flex h-16 items-center justify-between border-b bg-white px-6">
+      <header className="sticky top-0 flex h-16 items-center justify-between border-b px-6">
         <nav className="flex items-center">
           <Link href="/dashboard">
             <span className="cursor-pointer text-xl font-bold uppercase">
