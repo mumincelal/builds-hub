@@ -31,7 +31,7 @@ export const WorkflowRunList = ({ repo }: WorkflowRunListProps) => {
           <h3 className="text-2xl font-bold tracking-tight">
             You have no workflows
           </h3>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             You can create a new workflow in your{' '}
             <Link
               href={`${repo.html_url}/actions`}
