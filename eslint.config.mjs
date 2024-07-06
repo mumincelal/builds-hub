@@ -6,7 +6,7 @@ import pluginReact from 'eslint-plugin-react';
 import pluginReactHook from 'eslint-plugin-react-hooks';
 import prettier from 'eslint-config-prettier';
 import pluginImport from 'eslint-plugin-import';
-import { configs as pluginTanstackQueryConfigs } from '@tanstack/eslint-plugin-query';
+import pluginTanstackQueryConfigs from '@tanstack/eslint-plugin-query';
 
 export default [
   pluginJs.configs.recommended,
