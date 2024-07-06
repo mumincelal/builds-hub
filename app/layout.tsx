@@ -6,7 +6,16 @@ import { Providers } from '@/app/providers';
 import { cn } from '@/utils/tailwind';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const fontHeading = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-heading'
+});
+const fontBody = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body'
+});
 
 export const metadata: Metadata = {
   title: 'Builds Hub',
@@ -19,7 +28,9 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => (
   <html lang="en">
-    <body className={cn('min-h-screen', inter.className)}>
+    <body
+      className={cn('antialiased', fontHeading.variable, fontBody.variable)}
+    >
       <Providers>{children}</Providers>
       <SpeedInsights />
       <Analytics />
