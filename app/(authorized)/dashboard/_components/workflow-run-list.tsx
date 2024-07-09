@@ -1,7 +1,7 @@
 import { UpdateIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import React from 'react';
-import { WorkflowRunCard } from '@/app/dashboard/_components/workflow-run-card';
+import { WorkflowRunCard } from '@/app/(authorized)/dashboard/_components/workflow-run-card';
 import { Loading } from '@/components/loading';
 import { Button, ScrollArea } from '@/components/ui';
 import { useWorkflowRuns } from '@/queries';

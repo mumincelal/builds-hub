@@ -1,7 +1,7 @@
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import React from 'react';
-import { WorkflowRunList } from '@/app/dashboard/_components/workflow-run-list';
+import { WorkflowRunList } from '@/app/(authorized)/dashboard/_components/workflow-run-list';
 import {
   Badge,
   Button,

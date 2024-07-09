@@ -1,6 +1,6 @@
 import { cn } from '@/utils/tailwind';
 
-export const Spinner = ({ className }: React.ComponentProps<'svg'>) => (
+export const Home = ({ className }: React.ComponentProps<'svg'>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -11,8 +11,9 @@ export const Spinner = ({ className }: React.ComponentProps<'svg'>) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={cn('animate-spin', className)}
+    className={cn(className)}
   >
-    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+    <polyline points="9 22 9 12 15 12 15 22" />
   </svg>
 );

@@ -50,7 +50,7 @@ const Home = () => {
                     your workflows, and configure your actions with ease.
                   </p>
                 </div>
-                <div className="flex flex-col gap-2 border border-red-500 md:flex-row">
+                <div className="flex flex-col gap-2 md:flex-row">
                   <Button onClick={() => handleSignIn()}>Connect GitHub</Button>
                   <Button variant="outline">Learn More</Button>
                 </div>

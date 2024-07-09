@@ -8,3 +8,5 @@ export * from './badge';
 export * from './skeleton';
 export * from './card';
 export * from './dialog';
+export * from './tooltip';
+export * from './sheet';
