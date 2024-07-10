@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { withAuth } from 'next-auth/middleware';
+import { PageUrl } from '@/configs/enums';
 
 export default withAuth(
   async (req) => {
@@ -8,14 +9,14 @@ export default withAuth(
     const token = await getToken({ req });
 
     if (token) {
-      if (url.pathname === '/') {
-        url.pathname = '/dashboard';
+      if (url.pathname === PageUrl.ROOT) {
+        url.pathname = PageUrl.DASHBOARD;
 
         return NextResponse.redirect(url);
       }
     } else {
-      if (url.pathname !== '/') {
-        url.pathname = '/';
+      if (url.pathname !== PageUrl.ROOT) {
+        url.pathname = PageUrl.ROOT;
 
         return NextResponse.redirect(url);
       }
@@ -25,7 +26,7 @@ export default withAuth(
   },
   {
     pages: {
-      signIn: '/'
+      signIn: PageUrl.ROOT
     },
     callbacks: {
       authorized: async ({ token }) => !!token

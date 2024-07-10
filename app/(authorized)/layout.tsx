@@ -2,6 +2,7 @@
 
 import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
 import Placeholder from '@/assets/images/placeholder.svg';
@@ -18,33 +19,35 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui';
+import { PageUrl } from '@/configs/enums';
 import { Home, Logout, Menu, Recycle, Workflow } from '@/icons';
 import { abbreviate } from '@/utils/string';
+import { cn } from '@/utils/tailwind';
 
 const MENU_ITEMS: Readonly<
   {
     id: string;
     title: string;
-    href: string;
+    href: PageUrl;
     renderIcon: () => React.ReactNode;
   }[]
 > = [
   {
     id: 'dashboard',
     title: 'Dashboard',
-    href: '/dashboard',
+    href: PageUrl.DASHBOARD,
     renderIcon: () => <Home className="size-5" />
   },
   {
     id: 'repositories',
     title: 'Repositories',
-    href: '/repositories',
+    href: PageUrl.REPOSITORIES,
     renderIcon: () => <Recycle className="size-5" />
   },
   {
     id: 'actions',
     title: 'Actions',
-    href: '/actions',
+    href: PageUrl.ACTIONS,
     renderIcon: () => <Workflow className="size-5" />
   }
 ];
@@ -54,6 +57,7 @@ const Layout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const pathname = usePathname();
   const { data: session } = useSession();
 
   if (!session) {
@@ -73,7 +77,10 @@ const Layout = ({
               <Tooltip key={id}>
                 <TooltipTrigger asChild>
                   <Link
-                    className="flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                    className={cn(
+                      'flex size-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8',
+                      { 'bg-accent text-accent-foreground': pathname === href }
+                    )}
                     href={href}
                     prefetch={false}
                   >
@@ -139,7 +146,7 @@ const Layout = ({
             </div>
           </div>
         </header>
-        <main>{children}</main>
+        <main className="p-4 sm:px-6 sm:py-0">{children}</main>
       </div>
     </div>
   );

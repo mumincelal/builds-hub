@@ -53,7 +53,7 @@ export const WorkflowRunList = ({ repo }: WorkflowRunListProps) => {
           className={cn('mr-2 size-4 tracking-tight', {
             'animate-spin': isFetching
           })}
-        />{' '}
+        />
         {isFetching ? 'Updating...' : 'Update'}
       </Button>
       <ScrollArea className="h-2/6 lg:h-[58%]">

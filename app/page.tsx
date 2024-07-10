@@ -7,12 +7,13 @@ import { signIn, useSession } from 'next-auth/react';
 import React from 'react';
 import Placeholder from '@/assets/images/placeholder.svg';
 import { Button } from '@/components/ui';
+import { PageUrl } from '@/configs/enums';
 
 const Home = () => {
   const session = useSession();
 
   const handleSignIn = async () => {
-    await signIn('github', { callbackUrl: '/dashboard' });
+    await signIn('github', { callbackUrl: PageUrl.DASHBOARD });
   };
 
   return (

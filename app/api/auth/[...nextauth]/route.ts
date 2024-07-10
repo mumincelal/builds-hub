@@ -1,5 +1,6 @@
 import NextAuth, { AuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
+import { PageUrl } from '@/configs/enums';
 
 const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET ?? '',
@@ -19,7 +20,7 @@ const authOptions: AuthOptions = {
     strategy: 'jwt'
   },
   pages: {
-    signIn: '/'
+    signIn: PageUrl.ROOT
   },
   callbacks: {
     async jwt({ token, account }) {
