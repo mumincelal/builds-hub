@@ -2,6 +2,7 @@
 
 import {
   ColumnDef,
+  VisibilityState,
   flexRender,
   getCoreRowModel,
   useReactTable
@@ -14,27 +15,29 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table';
-import { cn } from '@/utils/tailwind';
 
 export type DataTableProps<TData, TValue> = Readonly<{
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  className?: string;
+  columnVisibility?: VisibilityState;
 }>;
 
 export const DataTable = <TData, TValue>({
   columns,
   data,
-  className
+  columnVisibility
 }: DataTableProps<TData, TValue>) => {
   const table = useReactTable({
     data,
     columns,
-    getCoreRowModel: getCoreRowModel()
+    getCoreRowModel: getCoreRowModel(),
+    state: {
+      columnVisibility
+    }
   });
 
   return (
-    <div className={cn('rounded-md border', className)}>
+    <div className="rounded-md border">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

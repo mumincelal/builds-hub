@@ -5,29 +5,70 @@ import React from 'react';
 import { SummaryCard } from '@/app/(authorized)/dashboard/_components';
 import { DataTableCard } from '@/components/data-table-card';
 import { PageUrl } from '@/configs/enums';
+import { useMediaQuery } from '@/hooks';
 // import { useRepos } from '@/queries';
 
 const Dashboard = () => {
+  const [isLowerThanLg] = useMediaQuery(['(max-width: 1024px)'], {
+    fallback: [false],
+    ssr: true
+  });
   // const { data: repos } = useRepos();
 
   const columns: ColumnDef<unknown>[] = [
     {
-      header: 'Repository'
+      header: 'Repository',
+      accessorKey: 'repository'
     },
     {
-      header: 'Branch'
+      header: 'Branch',
+      accessorKey: 'branch'
     },
     {
-      header: 'Workflow'
+      header: 'Workflow',
+      accessorKey: 'workflow'
     },
     {
-      header: 'Status'
+      header: 'Status',
+      accessorKey: 'status'
     },
     {
-      header: 'Triggered'
+      header: 'Triggered',
+      accessorKey: 'triggered'
     },
     {
-      header: 'Duration'
+      header: 'Duration',
+      accessorKey: 'duration'
+    }
+  ];
+
+  const data = [
+    {
+      id: '1',
+      repository: 'repo1',
+      branch: 'main',
+      workflow: 'workflow1',
+      status: 'success',
+      triggered: '1 minute ago',
+      duration: '1 minute'
+    },
+    {
+      id: '2',
+      repository: 'repo2',
+      branch: 'main',
+      workflow: 'workflow2',
+      status: 'failure',
+      triggered: '2 minutes ago',
+      duration: '2 minutes'
+    },
+    {
+      id: '3',
+      repository: 'repo3',
+      branch: 'main',
+      workflow: 'workflow3',
+      status: 'success',
+      triggered: '3 minutes ago',
+      duration: '3 minutes'
     }
   ];
 
@@ -50,7 +91,14 @@ const Dashboard = () => {
       <DataTableCard
         title="Recent Activity"
         description="View your recent GitHub Actions activity."
-        table={{ columns, data: [] }}
+        table={{
+          columns,
+          data,
+          columnVisibility: {
+            triggered: !isLowerThanLg,
+            duration: !isLowerThanLg
+          }
+        }}
       />
     </div>
   );

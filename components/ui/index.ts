@@ -11,3 +11,4 @@ export * from './dialog';
 export * from './tooltip';
 export * from './sheet';
 export * from './table';
+export * from './label';
