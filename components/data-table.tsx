@@ -1,12 +1,22 @@
 'use client';
 
+import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import {
   ColumnDef,
+  Row,
   VisibilityState,
   flexRender,
   getCoreRowModel,
   useReactTable
 } from '@tanstack/react-table';
+import React from 'react';
+import {
+  Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui';
 import {
   Table,
   TableBody,
@@ -15,6 +25,17 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table';
+
+export type RowAction = Readonly<{
+  key: string;
+  label: string;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+}>;
+
+type DataTableRowActionProps<T> = Readonly<{
+  row: Row<T>;
+  actions: RowAction[];
+}>;
 
 export type DataTableProps<TData, TValue> = Readonly<{
   columns: ColumnDef<TData, TValue>[];
@@ -81,3 +102,22 @@ export const DataTable = <TData, TValue>({
     </div>
   );
 };
+
+export const DataTableRowActions = <T extends object>({
+  actions,
+  row: T
+}: DataTableRowActionProps<T>) => (
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="ghost" aria-haspopup="true" size="icon">
+        <DotsHorizontalIcon className="size-4" />
+        <span className="sr-only">Actions</span>
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent align="end">
+      {actions.map(({ key, label }) => (
+        <DropdownMenuItem key={key}>{label}</DropdownMenuItem>
+      ))}
+    </DropdownMenuContent>
+  </DropdownMenu>
+);

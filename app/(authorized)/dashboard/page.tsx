@@ -6,14 +6,12 @@ import { SummaryCard } from '@/app/(authorized)/dashboard/_components';
 import { DataTableCard } from '@/components/data-table-card';
 import { PageUrl } from '@/configs/enums';
 import { useMediaQuery } from '@/hooks';
-// import { useRepos } from '@/queries';
 
 const Dashboard = () => {
   const [isLowerThanLg] = useMediaQuery(['(max-width: 1024px)'], {
     fallback: [false],
     ssr: true
   });
-  // const { data: repos } = useRepos();
 
   const columns: ColumnDef<unknown>[] = [
     {

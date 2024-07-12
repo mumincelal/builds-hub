@@ -1,5 +1,10 @@
 import { intlFormatDistance } from 'date-fns';
 
+/**
+ * Returns the relative time from now
+ * @param date
+ * @returns string
+ */
 export const getRelativeTime = (date: string | Date) => {
   let value = date;
 
