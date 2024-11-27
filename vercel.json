@@ -2,7 +2,7 @@
   "public": false,
   "git": {
     "deploymentEnabled": {
-      "main": false
+      "main": true
     }
   }
 }
