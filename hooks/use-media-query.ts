@@ -9,7 +9,7 @@ const listen = (query: MediaQueryList, callback: MediaQueryCallback) => {
   try {
     query.addEventListener('change', callback);
     return () => query.removeEventListener('change', callback);
-  } catch (e) {
+  } catch {
     query.addEventListener('change', callback);
     return () => query.removeEventListener('change', callback);
   }

@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui';
-import { PageUrl } from '@/configs/enums';
 
 export type SummaryCardProps = Readonly<{
   title: string;
@@ -15,7 +14,7 @@ export type SummaryCardProps = Readonly<{
   total: number;
   cta: {
     label: string;
-    url: PageUrl;
+    url: '/dashboard' | '/repositories' | '/actions';
   };
 }>;
 

@@ -4,7 +4,6 @@ import { ColumnDef } from '@tanstack/react-table';
 import React from 'react';
 import { SummaryCard } from '@/app/(authorized)/dashboard/_components';
 import { DataTableCard } from '@/components/data-table-card';
-import { PageUrl } from '@/configs/enums';
 import { useMediaQuery } from '@/hooks';
 
 const Dashboard = () => {
@@ -77,13 +76,13 @@ const Dashboard = () => {
           title="Repositories"
           description="View and manage your GitHub repositories."
           total={0}
-          cta={{ label: 'View Repositories', url: PageUrl.REPOSITORIES }}
+          cta={{ label: 'View Repositories', url: '/repositories' }}
         />
         <SummaryCard
           title="Actions"
           description="Manage your GitHub Actions workflows."
           total={0}
-          cta={{ label: 'View Actions', url: PageUrl.ACTIONS }}
+          cta={{ label: 'View Actions', url: '/actions' }}
         />
       </div>
       <DataTableCard

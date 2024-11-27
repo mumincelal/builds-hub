@@ -19,7 +19,6 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui';
-import { PageUrl } from '@/configs/enums';
 import { Home, Logout, Menu, Recycle, Workflow } from '@/icons';
 import { abbreviate } from '@/utils/string';
 import { cn } from '@/utils/tailwind';
@@ -28,26 +27,26 @@ const MENU_ITEMS: Readonly<
   {
     id: string;
     title: string;
-    href: PageUrl;
+    href: '/dashboard' | '/repositories' | '/actions';
     renderIcon: () => React.ReactNode;
   }[]
 > = [
   {
     id: 'dashboard',
     title: 'Dashboard',
-    href: PageUrl.DASHBOARD,
+    href: '/dashboard',
     renderIcon: () => <Home className="size-5" />
   },
   {
     id: 'repositories',
     title: 'Repositories',
-    href: PageUrl.REPOSITORIES,
+    href: '/repositories',
     renderIcon: () => <Recycle className="size-5" />
   },
   {
     id: 'actions',
     title: 'Actions',
-    href: PageUrl.ACTIONS,
+    href: '/actions',
     renderIcon: () => <Workflow className="size-5" />
   }
 ];
