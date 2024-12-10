@@ -1,6 +1,3 @@
 {
-  "*.{ts,tsx}": [
-    "eslint **/*.{ts,tsx} --fix",
-    "prettier --write **/*.{ts,tsx}"
-  ]
+  "*.{ts,tsx,json,js,jsx}": ["biome check --write"]
 }
