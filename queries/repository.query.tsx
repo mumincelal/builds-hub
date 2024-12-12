@@ -1,9 +1,9 @@
 import { getRepositories } from "@/apis/repository.api";
-import type { GitHubRepo } from "@/types/github-api";
+import type { GitHubRepository } from "@/types/github-api";
 import { useQuery } from "@tanstack/react-query";
 
 export const useRepos = () =>
-  useQuery<GitHubRepo[], Error>({
-    queryKey: ["repo"],
+  useQuery<GitHubRepository[], Error>({
+    queryKey: ["repository"],
     queryFn: getRepositories
   });
