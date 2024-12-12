@@ -186,6 +186,36 @@
   "overrides": [
     {
       "include": ["*.js?(x)", "*.ts?(x)"]
+    },
+    {
+      "include": ["github-api.ts", "env.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useNamingConvention": {
+              "level": "error",
+              "options": {
+                "strictCase": true,
+                "requireAscii": true,
+                "conventions": [
+                  {
+                    "selector": {
+                      "kind": "typeMember"
+                    },
+                    "formats": ["snake_case"]
+                  },
+                  {
+                    "selector": {
+                      "kind": "objectLiteralProperty"
+                    },
+                    "formats": ["CONSTANT_CASE"]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }

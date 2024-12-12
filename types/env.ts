@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
-/* eslint-disable @typescript-eslint/no-namespace */
-import { z } from 'zod';
+import { z } from "zod";
 
 const envVariables = z
   .object({
@@ -13,10 +11,12 @@ const envVariables = z
   })
   .required();
 
-envVariables.parse(process.env);
+// biome-ignore lint/nursery/noProcessEnv: Zod requires the use of process.env
+export const env = envVariables.parse(process.env);
 
 declare global {
-  namespace NodeJS {
+  // biome-ignore lint/style/noNamespace: This is a declaration file
+  namespace nodeJs {
     interface ProcessEnv extends z.infer<typeof envVariables> {}
   }
 }

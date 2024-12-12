@@ -1,11 +1,14 @@
-import axios from 'axios';
-import { getSession } from 'next-auth/react';
+import { env } from "@/types/env";
+import axios from "axios";
+import { getSession } from "next-auth/react";
 
 export const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_GITHUB_API_URL,
+  // biome-ignore lint/style/useNamingConvention: Axios
+  baseURL: env.NEXT_PUBLIC_GITHUB_API_URL,
   headers: {
-    Accept: 'application/vnd.github.v3+json',
-    'X-GitHub-Api-Version': process.env.NEXT_PUBLIC_GITHUB_API_VERSION
+    // biome-ignore lint/style/useNamingConvention: Axios
+    Accept: "application/vnd.github.v3+json",
+    "X-GitHub-Api-Version": env.NEXT_PUBLIC_GITHUB_API_VERSION
   }
 });
 

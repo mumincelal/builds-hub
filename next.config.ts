@@ -1,4 +1,4 @@
-import { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig = {
   reactStrictMode: true,
@@ -7,4 +7,5 @@ const nextConfig = {
   }
 } as NextConfig;
 
+// biome-ignore lint/style/noDefaultExport: Next.js
 export default nextConfig;
