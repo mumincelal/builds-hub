@@ -1,25 +1,26 @@
-import NextAuth, { AuthOptions } from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
+import { env } from "@/configs/env";
+import NextAuth, { type AuthOptions } from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 
 const authOptions: AuthOptions = {
-  secret: process.env.NEXTAUTH_SECRET ?? '',
+  secret: env.nextAuth.secret,
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID ?? '',
-      clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
-      version: '2022-11-28',
+      clientId: env.github.clientId,
+      clientSecret: env.github.clientSecret,
+      version: "2022-11-28",
       authorization: {
         params: {
-          scope: 'read:user user:email repo'
+          scope: "read:user user:email repo"
         }
       }
     })
   ],
   session: {
-    strategy: 'jwt'
+    strategy: "jwt"
   },
   pages: {
-    signIn: '/'
+    signIn: "/"
   },
   callbacks: {
     async jwt({ token, account }) {

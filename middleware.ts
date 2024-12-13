@@ -1,36 +1,36 @@
-import { NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
-import { withAuth } from 'next-auth/middleware';
+import { env } from "@/configs/env";
+import { getToken } from "next-auth/jwt";
+import { withAuth } from "next-auth/middleware";
+import { NextResponse } from "next/server";
 
+// biome-ignore lint/style/noDefaultExport: Next-Auth
 export default withAuth(
   async (req) => {
     const url = req.nextUrl.clone();
     const token = await getToken({ req });
 
     if (token) {
-      if (url.pathname === '/') {
-        url.pathname = '/dashboard';
+      if (url.pathname === "/") {
+        url.pathname = "/dashboard";
 
         return NextResponse.redirect(url);
       }
-    } else {
-      if (url.pathname !== '/') {
-        url.pathname = '/';
+    } else if (url.pathname !== "/") {
+      url.pathname = "/";
 
-        return NextResponse.redirect(url);
-      }
+      return NextResponse.redirect(url);
     }
 
     return NextResponse.next();
   },
   {
     pages: {
-      signIn: '/'
+      signIn: "/"
     },
     callbacks: {
       authorized: async ({ token }) => !!token
     },
-    secret: process.env.NEXTAUTH_SECRET ?? ''
+    secret: env.nextAuth.secret
   }
 );
 
@@ -43,6 +43,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|_next/image|_next/webpack-hmr|favicon.ico).*)'
+    "/((?!api|_next/static|_next/image|_next/webpack-hmr|favicon.ico).*)"
   ]
 };

@@ -1,10 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
-import { getWorkflowRun, getWorkflowRuns } from '@/apis/workflow-run.api';
-import { GitHubWorkflowRun, GitHubWorkflowRuns } from '@/types/github-api';
+import { getWorkflowRun, getWorkflowRuns } from "@/apis/workflow-run.api";
+import type {
+  GitHubWorkflowRun,
+  GitHubWorkflowRunList
+} from "@/configs/github-api";
+import { useQuery } from "@tanstack/react-query";
 
 export const useWorkflowRuns = (owner: string, repo: string) =>
-  useQuery<GitHubWorkflowRuns, Error>({
-    queryKey: ['workflowRun', owner, repo],
+  useQuery<GitHubWorkflowRunList, Error>({
+    queryKey: ["workflowRun", owner, repo],
     queryFn: () => getWorkflowRuns(owner, repo)
   });
 

@@ -1,4 +1,4 @@
-import { intlFormatDistance } from 'date-fns';
+import { intlFormatDistance } from "date-fns";
 
 /**
  * Returns the relative time from now
@@ -8,7 +8,7 @@ import { intlFormatDistance } from 'date-fns';
 export const getRelativeTime = (date: string | Date) => {
   let value = date;
 
-  if (typeof date === 'string') {
+  if (typeof date === "string") {
     value = new Date(date);
   }
 
@@ -25,16 +25,19 @@ export const getTimeDifference = (
   first: string | Date,
   second: string | Date
 ): string => {
-  if (typeof first === 'string') {
-    first = new Date(first);
+  let newFirst = first;
+  let newSecond = second;
+
+  if (typeof first === "string") {
+    newFirst = new Date(first);
   }
 
-  if (typeof second === 'string') {
-    second = new Date(second);
+  if (typeof second === "string") {
+    newSecond = new Date(second);
   }
 
-  const firstDate = new Date(first);
-  const secondDate = new Date(second);
+  const firstDate = new Date(newFirst);
+  const secondDate = new Date(newSecond);
 
   const diff = secondDate.getTime() - firstDate.getTime();
 

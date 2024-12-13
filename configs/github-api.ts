@@ -1,49 +1,22 @@
-export type GitHubOwner = {
-  login: string;
-  id: number;
-  node_id: string;
-  avatar_url: string;
-  gravatar_id: string;
-  url: string;
-  html_url: string;
-  followers_url: string;
-  following_url: string;
-  gists_url: string;
-  starred_url: string;
-  subscriptions_url: string;
-  organizations_url: string;
-  repos_url: string;
-  events_url: string;
-  received_events_url: string;
-  type: string;
-  site_admin: boolean;
+type GitHubStatus = "completed";
+type GithubConclusion = "failure" | "success";
+type GitHubVisibility = "public" | "private";
+
+export type GitHubError = {
+  message: string;
+  documentation_url: string;
+  status: number;
 };
 
-export type GitHubLicense = {
-  key: string;
-  name: string;
-  spdx_id: string;
-  url: string;
-  node_id: string;
-};
-
-export type GitHubPermissions = {
-  admin: boolean;
-  maintain: boolean;
-  push: boolean;
-  triage: boolean;
-  pull: boolean;
-};
-
-export type GitHubRepo = {
+export type GitHubRepository = {
   id: number;
   node_id: string;
   name: string;
   full_name: string;
   private: boolean;
-  owner: GitHubOwner;
+  owner: GitHubUser;
   html_url: string;
-  description?: string;
+  description: string | null;
   fork: boolean;
   url: string;
   forks_url: string;
@@ -89,11 +62,11 @@ export type GitHubRepo = {
   ssh_url: string;
   clone_url: string;
   svn_url: string;
-  homepage: string;
+  homepage: string | null;
   size: number;
   stargazers_count: number;
   watchers_count: number;
-  language?: string;
+  language: string | null;
   has_issues: boolean;
   has_projects: boolean;
   has_downloads: boolean;
@@ -105,12 +78,12 @@ export type GitHubRepo = {
   archived: boolean;
   disabled: boolean;
   open_issues_count: number;
-  license: GitHubLicense;
+  license: GitHubLicense | null;
   allow_forking: boolean;
   is_template: boolean;
   web_commit_signoff_required: boolean;
   topics: string[];
-  visibility: string;
+  visibility: GitHubVisibility;
   forks: number;
   open_issues: number;
   watchers: number;
@@ -118,7 +91,45 @@ export type GitHubRepo = {
   permissions: GitHubPermissions;
 };
 
-export type GitHubWorkflows = {
+export type GitHubUser = {
+  login: string;
+  id: number;
+  node_id: string;
+  avatar_url: string;
+  gravatar_id: string;
+  url: string;
+  html_url: string;
+  followers_url: string;
+  following_url: string;
+  gists_url: string;
+  starred_url: string;
+  subscriptions_url: string;
+  organizations_url: string;
+  repos_url: string;
+  events_url: string;
+  received_events_url: string;
+  type: string;
+  user_view_type: string;
+  site_admin: boolean;
+};
+
+export type GitHubLicense = {
+  key: string;
+  name: string;
+  spdx_id: string;
+  url: string;
+  node_id: string;
+};
+
+export type GitHubPermissions = {
+  admin: boolean;
+  maintain: boolean;
+  push: boolean;
+  triage: boolean;
+  pull: boolean;
+};
+
+export type GitHubWorkflowList = {
   total_count: number;
   workflows: GitHubWorkflow[];
 };
@@ -136,23 +147,9 @@ export type GitHubWorkflow = {
   badge_url: string;
 };
 
-export type GitHubWorkflowRuns = {
+export type GitHubWorkflowRunList = {
   total_count: number;
   workflow_runs: GitHubWorkflowRun[];
-};
-
-export type GitHubUser = {
-  name: string;
-  email: string;
-};
-
-export type GitHubHeadCommit = {
-  id: string;
-  tree_id: string;
-  message: string;
-  timestamp: string;
-  author: GitHubUser;
-  committer: GitHubUser;
 };
 
 export type GitHubWorkflowRun = {
@@ -165,30 +162,85 @@ export type GitHubWorkflowRun = {
   display_title: string;
   run_number: number;
   event: string;
-  status: string;
-  conclusion: string;
+  status: GitHubStatus;
+  conclusion: GithubConclusion;
   workflow_id: number;
   check_suite_id: number;
   check_suite_node_id: string;
   url: string;
   html_url: string;
-  pull_requests?: unknown[];
+  pull_requests: unknown[];
   created_at: string;
   updated_at: string;
-  actor: GitHubOwner;
+  actor: GitHubUser;
   run_attempt: number;
-  referenced_workflows?: unknown[];
+  referenced_workflows: unknown[];
   run_started_at: string;
-  triggering_actor: GitHubOwner;
+  triggering_actor: GitHubUser;
   jobs_url: string;
   logs_url: string;
   check_suite_url: string;
   artifacts_url: string;
   cancel_url: string;
   rerun_url: string;
-  previous_attempt_url?: string;
+  previous_attempt_url: string | null;
   workflow_url: string;
-  head_commit: GitHubHeadCommit;
-  repository: GitHubRepo;
-  head_repository: GitHubRepo;
+  head_commit: GitHubCommit;
+  repository: GitHubRepository;
+  head_repository: GitHubRepository;
+};
+
+export type GitHubCommit = {
+  id: string;
+  tree_id: string;
+  message: string;
+  timestamp: string;
+  author: {
+    name: string;
+    email: string;
+  };
+  committer: {
+    name: string;
+    email: string;
+  };
+};
+
+export type GitHubWorkflowRunJobList = {
+  total_count: number;
+  jobs: GitHubWorkflowRunJob[];
+};
+
+export type GitHubWorkflowRunJob = {
+  id: number;
+  run_id: number;
+  workflow_name: string;
+  head_branch: string;
+  run_url: string;
+  run_attempt: number;
+  node_id: string;
+  head_sha: string;
+  url: string;
+  html_url: string;
+  status: GitHubStatus;
+  conclusion: GithubConclusion;
+  created_at: string;
+  started_at: string;
+  completed_at: string;
+  name: string;
+  steps: GitHubWorkflowRunJobStep[];
+  check_run_url: string;
+  labels: string[];
+  runner_id: number;
+  runner_name: string;
+  runner_group_id: number;
+  runner_group_name: string;
+};
+
+export type GitHubWorkflowRunJobStep = {
+  name: string;
+  status: string;
+  conclusion: GithubConclusion;
+  number: number;
+  started_at: string;
+  completed_at: string;
 };
