@@ -11,8 +11,7 @@ const envVariables = z
   })
   .required();
 
-// biome-ignore lint/nursery/noProcessEnv: Zod requires the use of process.env
-export const env = envVariables.parse(process.env);
+envVariables.parse(process.env);
 
 declare global {
   // biome-ignore lint/style/noNamespace: This is a declaration file
@@ -20,3 +19,18 @@ declare global {
     interface ProcessEnv extends z.infer<typeof envVariables> {}
   }
 }
+
+export const env = {
+  github: {
+    clientId: process.env.GITHUB_CLIENT_ID ?? "",
+    clientSecret: process.env.GITHUB_CLIENT_SECRET ?? ""
+  },
+  nextAuth: {
+    url: process.env.NEXTAUTH_URL ?? "",
+    secret: process.env.NEXTAUTH_SECRET ?? ""
+  },
+  nextPublic: {
+    githubApiUrl: process.env.NEXT_PUBLIC_GITHUB_API_URL ?? "",
+    githubApiVersion: process.env.NEXT_PUBLIC_GITHUB_API_VERSION ?? ""
+  }
+} as const;

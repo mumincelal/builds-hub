@@ -1,13 +1,13 @@
-import { env } from "@/types/env";
+import { env } from "@/configs/env";
 import NextAuth, { type AuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
 const authOptions: AuthOptions = {
-  secret: env.NEXTAUTH_SECRET ?? "",
+  secret: env.nextAuth.secret,
   providers: [
     GithubProvider({
-      clientId: env.GITHUB_CLIENT_ID ?? "",
-      clientSecret: env.GITHUB_CLIENT_SECRET ?? "",
+      clientId: env.github.clientId,
+      clientSecret: env.github.clientSecret,
       version: "2022-11-28",
       authorization: {
         params: {

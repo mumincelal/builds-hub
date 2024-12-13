@@ -1,4 +1,4 @@
-import { env } from "@/types/env";
+import { env } from "@/configs/env";
 import { getToken } from "next-auth/jwt";
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
@@ -30,7 +30,7 @@ export default withAuth(
     callbacks: {
       authorized: async ({ token }) => !!token
     },
-    secret: env.NEXTAUTH_SECRET ?? ""
+    secret: env.nextAuth.secret
   }
 );
 

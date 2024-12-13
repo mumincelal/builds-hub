@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/apis/base.api";
-import type { GitHubRepository } from "@/types/github-api";
+import type { GitHubRepository } from "@/configs/github-api";
 import { AxiosError, HttpStatusCode } from "axios";
 
 export const getRepositories = async (): Promise<GitHubRepository[]> => {

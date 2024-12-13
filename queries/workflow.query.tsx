@@ -1,5 +1,5 @@
 import { getWorkflows } from "@/apis/workflow.api";
-import type { GitHubWorkflowList } from "@/types/github-api";
+import type { GitHubWorkflowList } from "@/configs/github-api";
 import { useQuery } from "@tanstack/react-query";
 
 export const useWorkflows = (owner: string, repo: string) =>

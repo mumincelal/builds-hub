@@ -2,7 +2,7 @@ import { axiosInstance } from "@/apis/base.api";
 import type {
   GitHubWorkflowRun,
   GitHubWorkflowRunList
-} from "@/types/github-api";
+} from "@/configs/github-api";
 import { AxiosError, HttpStatusCode } from "axios";
 
 export const getWorkflowRuns = async (

@@ -3,7 +3,7 @@ import type {
   GitHubWorkflow,
   GitHubWorkflowList,
   GitHubWorkflowRunList
-} from "@/types/github-api";
+} from "@/configs/github-api";
 import { AxiosError, HttpStatusCode } from "axios";
 
 export const getWorkflows = async (
