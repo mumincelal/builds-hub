@@ -35,4 +35,11 @@ jobs:
         run: pnpm lint
 
       - name: Build
+        env:
+          GITHUB_CLIENT_ID: 'GITHUB_CLIENT_ID'
+          GITHUB_CLIENT_SECRET: 'GITHUB_CLIENT_SECRET'
+          NEXTAUTH_URL: 'NEXTAUTH_URL'
+          NEXTAUTH_SECRET: 'NEXTAUTH_SECRET'
+          NEXT_PUBLIC_GITHUB_API_URL: 'NEXT_PUBLIC_GITHUB_API_URL'
+          NEXT_PUBLIC_GITHUB_API_VERSION: 'NEXT_PUBLIC_GITHUB_API_VERSION'
         run: pnpm build
