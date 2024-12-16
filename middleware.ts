@@ -30,7 +30,7 @@ export default withAuth(
     callbacks: {
       authorized: async ({ token }) => !!token
     },
-    secret: env.nextAuth.secret
+    secret: env.NEXTAUTH_SECRET
   }
 );
 
