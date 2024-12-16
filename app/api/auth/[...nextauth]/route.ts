@@ -3,11 +3,11 @@ import NextAuth, { type AuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
 const authOptions: AuthOptions = {
-  secret: env.nextAuth.secret,
+  secret: env.NEXTAUTH_SECRET,
   providers: [
     GithubProvider({
-      clientId: env.github.clientId,
-      clientSecret: env.github.clientSecret,
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
       version: "2022-11-28",
       authorization: {
         params: {

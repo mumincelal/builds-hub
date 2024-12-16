@@ -6,21 +6,18 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-const fontHeading = Inter({
+const inter = Inter({
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-heading"
-});
-const fontBody = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-body"
+  variable: "--font-inter"
 });
 
 // biome-ignore lint/nursery/useComponentExportOnlyModules: Next.js
 export const metadata: Metadata = {
-  title: "Builds Hub",
-  description: "All GitHub Actions builds you need in one place"
+  title: {
+    template: "%s | Builds Hub",
+    default: "Builds Hub"
+  },
+  description: "Manage GitHub Actions Across All Repos"
 };
 
 const RootLayout = ({
@@ -29,10 +26,12 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => (
   <html lang="en">
-    <body
-      className={cn("antialiased", fontHeading.variable, fontBody.variable)}
-    >
-      <Providers>{children}</Providers>
+    <body className={cn("h-screen", inter.className)}>
+      <div className="flex h-full">
+        <div className="flex-1">
+          <Providers>{children}</Providers>
+        </div>
+      </div>
       <SpeedInsights />
       <Analytics />
     </body>

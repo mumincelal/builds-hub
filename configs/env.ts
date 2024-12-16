@@ -1,36 +1,28 @@
+import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
-const envVariables = z
-  .object({
-    GITHUB_CLIENT_ID: z.string(),
-    GITHUB_CLIENT_SECRET: z.string(),
-    NEXTAUTH_URL: z.string(),
-    NEXTAUTH_SECRET: z.string(),
-    NEXT_PUBLIC_GITHUB_API_URL: z.string(),
-    NEXT_PUBLIC_GITHUB_API_VERSION: z.string()
-  })
-  .required();
+const server = z.object({
+  GITHUB_CLIENT_ID: z.string(),
+  GITHUB_CLIENT_SECRET: z.string(),
+  NEXTAUTH_URL: z.string(),
+  NEXTAUTH_SECRET: z.string()
+});
 
-envVariables.parse(process.env);
+const client = z.object({
+  NEXT_PUBLIC_GITHUB_API_URL: z.string(),
+  NEXT_PUBLIC_GITHUB_API_VERSION: z.string()
+});
 
-declare global {
-  // biome-ignore lint/style/noNamespace: This is a declaration file
-  namespace nodeJs {
-    interface ProcessEnv extends z.infer<typeof envVariables> {}
-  }
-}
-
-export const env = {
-  github: {
-    clientId: process.env.GITHUB_CLIENT_ID ?? "",
-    clientSecret: process.env.GITHUB_CLIENT_SECRET ?? ""
+export const env = createEnv({
+  client: client.shape,
+  server: server.shape,
+  runtimeEnv: {
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    NEXT_PUBLIC_GITHUB_API_URL: process.env.NEXT_PUBLIC_GITHUB_API_URL,
+    NEXT_PUBLIC_GITHUB_API_VERSION: process.env.NEXT_PUBLIC_GITHUB_API_VERSION
   },
-  nextAuth: {
-    url: process.env.NEXTAUTH_URL ?? "",
-    secret: process.env.NEXTAUTH_SECRET ?? ""
-  },
-  nextPublic: {
-    githubApiUrl: process.env.NEXT_PUBLIC_GITHUB_API_URL ?? "",
-    githubApiVersion: process.env.NEXT_PUBLIC_GITHUB_API_VERSION ?? ""
-  }
-} as const;
+  emptyStringAsUndefined: true
+});
