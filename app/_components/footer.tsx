@@ -12,12 +12,12 @@ export const Footer = () => (
         <span className="text-center text-white text-xs">
           Copyright © {new Date().getFullYear()} Builds Hub.
           <span className="block md:ml-1 md:inline-block">
-            All rights reserved by
+            All rights reserved by&nbsp;
             <Link
               href="https://linkedin.com/in/mumin-celal-pinar"
-              className="text-gray-400"
+              className="text-white underline decoration-red-500 decoration-wavy underline-offset-4"
             >
-              &nbsp;Mümin Celal Pinar
+              Mümin Celal Pinar
             </Link>
           </span>
         </span>
