@@ -53,10 +53,10 @@ export const Features = () => (
               <div className="rounded-lg bg-white p-3">
                 <feature.icon className="h-10 w-10 text-indigo-600" />
               </div>
-              <h3 className="mt-6 mb-3 font-bold text-gray-900 text-xl">
+              <h3 className="mt-6 mb-3 text-balance font-bold text-gray-900 text-xl">
                 {feature.title}
               </h3>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-balance text-gray-700 leading-relaxed">
                 {feature.description}
               </p>
             </div>

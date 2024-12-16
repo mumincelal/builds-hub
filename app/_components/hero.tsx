@@ -19,7 +19,7 @@ export const Hero = () => {
     <section className="bg-gray-50 py-10 lg:py-20">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
-          <div className="space-y-4">
+          <div className="space-y-6">
             <h1 className="space-y-1">
               <span className="block font-semibold text-base text-indigo-600 uppercase tracking-wide">
                 Introducing Builds Hub
@@ -28,7 +28,9 @@ export const Hero = () => {
                 <span className="block text-gray-900">
                   Manage GitHub Actions
                 </span>
-                <span className="block text-indigo-600">Across All Repos</span>
+                <span className="block text-indigo-600 underline decoration-4 decoration-wavy underline-offset-4">
+                  Across All Repos
+                </span>
               </span>
             </h1>
             <p className="text-base text-gray-500">

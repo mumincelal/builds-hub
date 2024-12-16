@@ -26,9 +26,7 @@ export const Header = () => {
           <div className="flex cursor-pointer items-center space-x-2 transition-opacity hover:opacity-90">
             <LucideBoxes className="size-8 text-gray-600" />
             <div className="flex items-baseline space-x-1.5 text-2xl">
-              <span className="font-extrabold text-gray-600 text-transparent">
-                Builds
-              </span>
+              <span className="font-extrabold text-gray-600">Builds</span>
               <span className="font-light text-gray-900">Hub</span>
             </div>
           </div>
