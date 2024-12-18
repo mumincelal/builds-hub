@@ -124,6 +124,7 @@
         "useShorthandAssign": "error",
         "useThrowNewError": "error",
         "useThrowOnlyError": "error",
+        "useImportType": "off",
         "useNamingConvention": {
           "level": "error",
           "options": {
