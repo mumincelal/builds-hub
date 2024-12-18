@@ -1,8 +1,16 @@
 "use client";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 export type AppSidebarHeaderProps = Readonly<{
   menuItems: {
@@ -15,13 +23,26 @@ export type AppSidebarHeaderProps = Readonly<{
 
 export const AppSidebarHeader = ({ menuItems }: AppSidebarHeaderProps) => {
   const pathname = usePathname();
-  const title = menuItems.find((item) => item.url === pathname)?.title;
+  const params = useParams();
+  const menuItem = menuItems.find((item) => pathname.startsWith(item.url));
 
   return (
     <header className="sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
       <SidebarTrigger className="-ml-1" />
       <Separator orientation="vertical" className="mr-2 h-4" />
-      <p className="font-normal text-foreground">{title}</p>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem className="hidden md:block">
+            <BreadcrumbLink href={menuItem?.url}>
+              {menuItem?.title}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator className="hidden md:block" />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{params.slug}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
     </header>
   );
 };

@@ -1,4 +1,5 @@
 import { env } from "@/configs/env";
+import { GitHubUser } from "@/configs/github-api";
 import NextAuth, { type AuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
@@ -23,15 +24,26 @@ const authOptions: AuthOptions = {
     signIn: "/"
   },
   callbacks: {
-    async jwt({ token, account }) {
+    async jwt({ token, account, profile }) {
       if (account) {
         token.accessToken = account.access_token;
+      }
+
+      if (profile) {
+        token.profile = profile;
       }
 
       return token;
     },
     async session({ session, token }) {
-      session.user.token = token.accessToken as string;
+      session = {
+        ...session,
+        user: {
+          ...session.user,
+          token: token.accessToken as string,
+          profile: token.profile as GitHubUser
+        }
+      };
 
       return session;
     }

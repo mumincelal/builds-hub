@@ -81,7 +81,7 @@ export const AppSidebar = ({ menuItems }: AppSidebarProps) => {
               <SidebarMenuButton
                 className={cn("mx-auto", {
                   "bg-sidebar-accent text-sidebar-accent-foreground":
-                    pathname === item.url
+                    pathname.startsWith(item.url)
                 })}
                 tooltip={item.title}
                 asChild
