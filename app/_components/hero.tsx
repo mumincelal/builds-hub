@@ -40,14 +40,10 @@ export const Hero = () => {
             </p>
             <ConditionalShow
               when={session.data}
-              fallback={
-                <Button onClick={handleSignIn()} disabled>
-                  Get Started
-                </Button>
-              }
+              fallback={<Button onClick={handleSignIn()}>Get Started</Button>}
             >
               <Link href="/dashboard" passHref>
-                <Button disabled>Dashboard</Button>
+                <Button>Dashboard</Button>
               </Link>
             </ConditionalShow>
           </div>

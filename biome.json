@@ -33,7 +33,8 @@
         "noUnusedPrivateClassMembers": "error",
         "noUnusedVariables": "error",
         "useArrayLiterals": "error",
-        "useHookAtTopLevel": "error"
+        "useHookAtTopLevel": "error",
+        "useExhaustiveDependencies": "warn"
       },
       "nursery": {
         "noCommonJs": "error",
@@ -241,6 +242,51 @@
           "nursery": {
             "noProcessEnv": {
               "level": "off"
+            }
+          }
+        }
+      }
+    },
+    {
+      "include": ["sidebar.tsx"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "noSecrets": {
+              "level": "off",
+              "options": {
+                "entropyThreshold": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "include": ["tailwind.config.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useNamingConvention": {
+              "level": "error",
+              "options": {
+                "strictCase": true,
+                "requireAscii": true,
+                "conventions": [
+                  {
+                    "selector": {
+                      "kind": "typeMember"
+                    },
+                    "formats": ["snake_case"]
+                  },
+                  {
+                    "selector": {
+                      "kind": "objectLiteralProperty"
+                    },
+                    "formats": ["CONSTANT_CASE", "camelCase"]
+                  }
+                ]
+              }
             }
           }
         }
