@@ -18,6 +18,7 @@ import {
   SidebarRail,
   useSidebar
 } from "@/components/ui/sidebar";
+import { cn } from "@/lib/tailwind";
 import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
@@ -25,6 +26,7 @@ import {
 import { ChevronsUpDown, LogOut, LucideBoxes } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export type AppSidebarProps = Readonly<{
   menuItems: {
@@ -38,6 +40,7 @@ export type AppSidebarProps = Readonly<{
 export const AppSidebar = ({ menuItems }: AppSidebarProps) => {
   const { isMobile } = useSidebar();
   const session = useSession();
+  const pathname = usePathname();
 
   const handleSignOut = () => {
     return async () => await signOut({ callbackUrl: "/dashboard" });
@@ -76,7 +79,10 @@ export const AppSidebar = ({ menuItems }: AppSidebarProps) => {
           {menuItems?.map((item) => (
             <SidebarMenuItem key={item.key}>
               <SidebarMenuButton
-                className="mx-auto"
+                className={cn("mx-auto", {
+                  "bg-sidebar-accent text-sidebar-accent-foreground":
+                    pathname === item.url
+                })}
                 tooltip={item.title}
                 asChild
               >
