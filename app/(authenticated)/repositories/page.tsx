@@ -1,13 +1,30 @@
 "use client";
 
-import { columns } from "@/app/(authenticated)/repositories/columns";
-import { DataTable } from "@/app/(authenticated)/repositories/data-table";
+import { RepositoryCard } from "@/app/(authenticated)/repositories/_components/repository-card";
 import { useRepositories } from "@/queries/repository.query";
 
 const Repositories = () => {
-  const { data: repositories } = useRepositories();
+  const { data: repositories, error, isLoading } = useRepositories();
 
-  return <DataTable columns={columns} data={repositories ?? []} />;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!repositories || repositories.length === 0) {
+    return <div>No repositories found.</div>;
+  }
+
+  return (
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {repositories.map((repository) => (
+        <RepositoryCard key={repository.id} repository={repository} />
+      ))}
+    </div>
+  );
 };
 
 // biome-ignore lint/style/noDefaultExport: Next.js

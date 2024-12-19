@@ -1,5 +1,6 @@
 "use client";
 
+import { ConditionalShow } from "@/components/conditional-show";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -37,10 +38,12 @@ export const AppSidebarHeader = ({ menuItems }: AppSidebarHeaderProps) => {
               {menuItem?.title}
             </BreadcrumbLink>
           </BreadcrumbItem>
-          <BreadcrumbSeparator className="hidden md:block" />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{params.slug}</BreadcrumbPage>
-          </BreadcrumbItem>
+          <ConditionalShow when={params.slug}>
+            <BreadcrumbSeparator className="hidden md:block" />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{params.slug}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </ConditionalShow>
         </BreadcrumbList>
       </Breadcrumb>
     </header>
