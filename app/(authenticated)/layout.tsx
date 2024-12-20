@@ -27,7 +27,7 @@ const Layout = ({
     <AppSidebar menuItems={menuItems} />
     <SidebarInset>
       <AppSidebarHeader menuItems={menuItems} />
-      <div className="p-4">{children}</div>
+      <div className="size-full p-4">{children}</div>
     </SidebarInset>
   </SidebarProvider>
 );

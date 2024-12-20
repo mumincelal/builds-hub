@@ -1,6 +1,6 @@
 "use client";
-
-import { RepositoriesCardLoading } from "@/app/(authenticated)/repositories/_components/repositories-card-loading";
+import { RepositoriesError } from "@/app/(authenticated)/repositories/_components/repositories-error";
+import { RepositoriesLoading } from "@/app/(authenticated)/repositories/_components/repositories-loading";
 import { RepositoryCard } from "@/app/(authenticated)/repositories/_components/repository-card";
 import { ConditionalShow } from "@/components/conditional-show";
 import { Button } from "@/components/ui/button";
@@ -14,15 +14,20 @@ const Repositories = () => {
     isLoading,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage
+    isFetchingNextPage,
+    refetch
   } = useRepositories();
 
   if (isLoading) {
-    return <RepositoriesCardLoading />;
+    return <RepositoriesLoading />;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div className="mx-auto my-auto flex size-full items-center justify-center">
+        <RepositoriesError message={error.message} onRetry={() => refetch()} />
+      </div>
+    );
   }
 
   if (!data || data.pages[0]?.length === 0) {
