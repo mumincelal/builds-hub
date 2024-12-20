@@ -2,7 +2,12 @@ import { RepositoryCardDescription } from "@/app/(authenticated)/repositories/_c
 import { RepositoryCardHeader } from "@/app/(authenticated)/repositories/_components/repository-card-header";
 import { RepositoryCardStats } from "@/app/(authenticated)/repositories/_components/repository-card-stats";
 import { RepositoryCardTags } from "@/app/(authenticated)/repositories/_components/repository-card-tags";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader
+} from "@/components/ui/card";
 import { GitHubRepository } from "@/configs/github-api";
 
 type RepositoryCardProps = Readonly<{
@@ -10,7 +15,7 @@ type RepositoryCardProps = Readonly<{
 }>;
 
 export const RepositoryCard = ({ repository }: RepositoryCardProps) => (
-  <Card>
+  <Card className="flex flex-col">
     <CardHeader>
       <RepositoryCardHeader
         name={repository.name}
@@ -23,18 +28,20 @@ export const RepositoryCard = ({ repository }: RepositoryCardProps) => (
       />
       <RepositoryCardDescription description={repository.description} />
     </CardHeader>
-    <CardContent className="space-y-2">
+    <CardContent className="mt-auto">
       <RepositoryCardStats
         stars={repository.stargazers_count}
         forks={repository.forks_count}
         issues={repository.open_issues_count}
         watchers={repository.watchers_count}
       />
+    </CardContent>
+    <CardFooter className="mt-auto">
       <RepositoryCardTags
         language={repository.language}
         license={repository.license?.name}
         updatedAt={repository.updated_at}
       />
-    </CardContent>
+    </CardFooter>
   </Card>
 );

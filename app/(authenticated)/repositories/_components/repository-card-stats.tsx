@@ -47,9 +47,9 @@ export const RepositoryCardStats = ({
   ];
 
   return (
-    <div className="flex flex-wrap items-center space-x-4">
+    <div className="flex flex-wrap items-center gap-4">
       {stats.map(({ color, icon: Icon, key, label, value }) => (
-        <div className="flex items-center space-x-1" key={key} title={label}>
+        <div className="flex items-center gap-1" key={key} title={label}>
           <Icon className={cn("size-4", color)} />
           <span className="text-gray-600 text-sm">{formatNumber(value)}</span>
         </div>

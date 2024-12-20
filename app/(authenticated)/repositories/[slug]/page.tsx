@@ -40,7 +40,7 @@ const Repository = ({ params }: { params: Promise<{ slug: string }> }) => {
           target="_blank"
           passHref
         >
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             <GitHubIcon className="size-4" />
             <span>{repository.full_name}</span>
           </div>

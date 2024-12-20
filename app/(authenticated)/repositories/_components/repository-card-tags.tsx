@@ -14,24 +14,21 @@ export const RepositoryCardTags = ({
   license,
   updatedAt
 }: RepositoryCardTagsProps) => (
-  <div className="flex flex-wrap items-center space-x-1">
+  <div className="flex flex-wrap items-center gap-2">
     <ConditionalShow when={language}>
-      <Badge
-        variant="secondary"
-        className="flex items-center space-x-1 text-xs"
-      >
+      <Badge variant="secondary" className="flex items-center gap-1 text-xs">
         <Code className="size-3" />
         <span>{language}</span>
       </Badge>
     </ConditionalShow>
     <ConditionalShow when={license}>
-      <Badge variant="success" className="flex items-center space-x-1 text-xs">
+      <Badge variant="success" className="flex items-center gap-1 text-xs">
         <Scale className="size-3" />
         <span>{license}</span>
       </Badge>
     </ConditionalShow>
     <ConditionalShow when={updatedAt}>
-      <Badge variant="info" className="flex items-center space-x-1 text-xs">
+      <Badge variant="info" className="flex items-center gap-1 text-xs">
         <Clock className="size-3" />
         <span>{getRelativeTime(updatedAt as string)}</span>
       </Badge>

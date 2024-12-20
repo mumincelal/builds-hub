@@ -59,7 +59,7 @@ export const Hero = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-900/70 to-gray-900/90">
                 <div className="absolute inset-0 p-3 md:p-6">
                   <div className="space-y-2 md:space-y-4">
-                    <div className="flex items-center space-x-3 rounded-lg bg-gray-800/50 p-3">
+                    <div className="flex items-center gap-3 rounded-lg bg-gray-800/50 p-3">
                       <div className="size-3 animate-pulse rounded-full bg-green-400" />
                       <span className="font-medium text-green-400 text-sm">
                         build-and-test
@@ -68,7 +68,7 @@ export const Hero = () => {
                         2m ago
                       </span>
                     </div>
-                    <div className="flex items-center space-x-3 rounded-lg bg-gray-800/50 p-3">
+                    <div className="flex items-center gap-3 rounded-lg bg-gray-800/50 p-3">
                       <div className="size-3 animate-pulse rounded-full bg-blue-400" />
                       <span className="font-medium text-blue-400 text-sm">
                         deploy-staging
@@ -77,7 +77,7 @@ export const Hero = () => {
                         5m ago
                       </span>
                     </div>
-                    <div className="flex items-center space-x-3 rounded-lg bg-gray-800/50 p-3">
+                    <div className="flex items-center gap-3 rounded-lg bg-gray-800/50 p-3">
                       <div className="size-3 animate-pulse rounded-full bg-purple-400" />
                       <span className="font-medium text-purple-400 text-sm">
                         security-scan
@@ -91,19 +91,19 @@ export const Hero = () => {
               </div>
               <div className="absolute right-3 bottom-3 left-3 md:right-6 md:bottom-6 md:left-6">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <Activity className="size-5 text-green-400" />
                     <span className="font-medium text-sm text-white">
                       Active Workflows
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <GitBranch className="size-5 text-blue-400" />
                     <span className="font-medium text-sm text-white">
                       Connected Repos
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <Terminal className="size-5 text-purple-400" />
                     <span className="font-medium text-sm text-white">
                       Success Rate

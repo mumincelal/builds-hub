@@ -37,9 +37,9 @@ export const AppSidebar = ({ menuItems }: AppSidebarProps) => {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="flex cursor-pointer items-center justify-center space-x-2 transition-opacity hover:opacity-90">
+              <div className="flex cursor-pointer items-center justify-center gap-2 transition-opacity hover:opacity-90">
                 <LucideBoxes className="size-8 text-gray-600" />
-                <div className="flex items-baseline space-x-1.5 text-2xl">
+                <div className="flex items-baseline gap-1.5 text-2xl">
                   <span className="font-extrabold text-gray-600">Builds</span>
                   <span className="font-light text-gray-900">Hub</span>
                 </div>

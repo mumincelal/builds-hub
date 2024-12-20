@@ -19,29 +19,31 @@ export const RepositoryCardHeader = ({
   url,
   owner
 }: RepositoryCardHeaderProps) => (
-  <CardTitle className="space-y-2">
-    <Link
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center space-x-1 decoration-dashed underline-offset-3 hover:underline"
-    >
-      <GitHubIcon className="size-4 text-gray-500" />
-      <h3 className="font-semibold text-gray-900 text-xl">{name}</h3>
-    </Link>
+  <CardTitle className="space-y-3">
+    <div className="flex items-center justify-between">
+      <Link
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 outline-none transition-colors hover:text-primary focus-visible:text-primary"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <GitHubIcon className="size-4 text-muted-foreground" />
+        <h3 className="truncate font-semibold text-xl">{name}</h3>
+      </Link>
+    </div>
     <Link
       href={owner.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center space-x-1 decoration-solid underline-offset-3 hover:underline"
+      className="flex w-fit items-center gap-2 outline-none transition-colors hover:text-primary focus-visible:text-primary"
+      onClick={(e) => e.stopPropagation()}
     >
-      <Avatar className="size-5 rounded-full">
+      <Avatar className="size-5">
         <AvatarImage src={owner.avatarUrl} alt={owner.name} />
-        <AvatarFallback className="rounded-full">
-          {abbreviate(owner.name)}
-        </AvatarFallback>
+        <AvatarFallback>{abbreviate(owner.name)}</AvatarFallback>
       </Avatar>
-      <span className="font-normal text-gray-600 text-sm">{owner.name}</span>
+      <span className="text-muted-foreground text-sm">{owner.name}</span>
     </Link>
   </CardTitle>
 );
