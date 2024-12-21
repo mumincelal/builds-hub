@@ -1,15 +1,29 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+export async function POST(request: Request) {
+  try {
+    const text = await request.text();
+    JSON.parse(text);
 
-// biome-ignore lint/style/noDefaultExport: <explanation>
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "POST") {
-    // Process a POST request
-
-    res.status(200).json({ message: "Webhook received successfully" });
-  } else {
-    // Handle any other HTTP method
-    res.status(405).json({ message: "Method not allowed" });
+    return Response.json({ message: "Webhook received successfully" });
+    // Process the webhook payload
+  } catch (error) {
+    return new Response(`Webhook error: ${error}`, {
+      status: 400
+    });
   }
+}
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const owner = searchParams.get("owner");
+  const repo = searchParams.get("repo");
+
+  if (!(owner && repo)) {
+    return new Response("Missing owner or repo", {
+      status: 400
+    });
+  }
+
+  return Response.json({});
 }
 
 export const config = {
