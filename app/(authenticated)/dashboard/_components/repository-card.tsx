@@ -1,7 +1,7 @@
-import { RepositoryCardDescription } from "@/app/(authenticated)/repositories/_components/repository-card-description";
-import { RepositoryCardHeader } from "@/app/(authenticated)/repositories/_components/repository-card-header";
-import { RepositoryCardStats } from "@/app/(authenticated)/repositories/_components/repository-card-stats";
-import { RepositoryCardTags } from "@/app/(authenticated)/repositories/_components/repository-card-tags";
+import { RepositoryCardDescription } from "@/app/(authenticated)/dashboard/_components/repository-card-description";
+import { RepositoryCardHeader } from "@/app/(authenticated)/dashboard/_components/repository-card-header";
+import { RepositoryCardStats } from "@/app/(authenticated)/dashboard/_components/repository-card-stats";
+import { RepositoryCardTags } from "@/app/(authenticated)/dashboard/_components/repository-card-tags";
 import {
   Card,
   CardContent,

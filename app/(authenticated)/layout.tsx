@@ -1,7 +1,7 @@
 import { AppSidebar, type AppSidebarProps } from "@/components/app-sidebar";
 import { AppSidebarHeader } from "@/components/app-sidebar-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { FolderGit2, LayoutDashboard } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 
 const menuItems: AppSidebarProps["menuItems"] = [
   {
@@ -9,12 +9,6 @@ const menuItems: AppSidebarProps["menuItems"] = [
     title: "Dashboard",
     url: "/dashboard",
     icon: <LayoutDashboard className="size-4" />
-  },
-  {
-    key: "repositories",
-    title: "Repositories",
-    url: "/repositories",
-    icon: <FolderGit2 className="size-4" />
   }
 ];
 

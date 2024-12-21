@@ -1,4 +1,4 @@
-import { RepositoryCardLoading } from "@/app/(authenticated)/repositories/_components/repository-card-loading";
+import { RepositoryCardLoading } from "@/app/(authenticated)/dashboard/_components/repository-card-loading";
 import { REPOSITORIES_PER_PAGE } from "@/configs/constants";
 
 export const RepositoriesLoading = () => {
