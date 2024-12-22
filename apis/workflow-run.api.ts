@@ -16,7 +16,8 @@ export const getWorkflowRuns = async (
       `/repos/${owner}/${repo}/actions/runs`,
       {
         params: {
-          perPage: WORKFLOW_RUNS_PER_PAGE,
+          // biome-ignore lint/style/useNamingConvention: <explanation>
+          per_page: WORKFLOW_RUNS_PER_PAGE,
           page
         }
       }

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/sheet";
 import { useWorkflowRuns } from "@/queries/workflow-run.query";
 import { Loader2, Play } from "lucide-react";
+import React from "react";
 import { InView } from "react-intersection-observer";
 
 type WorkflowRunsSheetProps = Readonly<{
@@ -27,6 +28,8 @@ export const WorkflowRunsSheet = ({
   repositoryName,
   owner
 }: WorkflowRunsSheetProps) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   const {
     data,
     error,
@@ -35,18 +38,18 @@ export const WorkflowRunsSheet = ({
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage
-  } = useWorkflowRuns(owner, repositoryName);
+  } = useWorkflowRuns({ owner, repository: repositoryName, enabled: isOpen });
 
-  if (!data || data.pages[0]?.workflow_runs.length === 0) {
+  /* if (!data || data.pages[0]?.workflow_runs.length === 0) {
     return (
       <div className="text-muted-foreground text-sm">
         No workflow runs found
       </div>
     );
-  }
+  } */
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="outline" className="gap-2">
           <Play className="size-4" />
@@ -69,10 +72,10 @@ export const WorkflowRunsSheet = ({
             onRetry={() => refetch()}
           />
         </ConditionalShow>
-        <ConditionalShow when={data.pages[0]?.workflow_runs.length}>
+        <ConditionalShow when={data?.pages[0]?.workflow_runs.length}>
           <ScrollArea className="h-[calc(100vh-8rem)] space-y-8 pr-4">
             <div className="grid grid-cols-1 gap-6">
-              {data.pages.map((page) =>
+              {data?.pages.map((page) =>
                 page.workflow_runs.map((workflowRun) => (
                   <WorkflowRunCard
                     key={workflowRun.id}
