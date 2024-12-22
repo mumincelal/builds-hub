@@ -1,10 +1,15 @@
 import { WorkflowRunStatus } from "@/app/(authenticated)/dashboard/_components/workflow-run-status";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
 import { GitHubWorkflowRun } from "@/configs/github-api";
 import { getRelativeTime } from "@/utils/date";
-import { Clock, GitBranch, RotateCcw } from "lucide-react";
+import { Clock, GitBranch, RotateCcw, Timer } from "lucide-react";
 import Link from "next/link";
 
 type WorkflowRunCardProps = Readonly<{
@@ -14,7 +19,7 @@ type WorkflowRunCardProps = Readonly<{
 export const WorkflowRunCard = ({ workflowRun }: WorkflowRunCardProps) => (
   <Card className="flex flex-col">
     <CardHeader>
-      <CardTitle className="space-y-3">
+      <CardTitle>
         <div className="flex items-center justify-between">
           <Link
             href={workflowRun.html_url}
@@ -44,17 +49,23 @@ export const WorkflowRunCard = ({ workflowRun }: WorkflowRunCardProps) => (
         <div className="flex items-center gap-1" title="Started">
           <Clock className="size-4 text-green-500" />
           <span className="text-gray-600 text-sm">
-            Last Run: {getRelativeTime(workflowRun.created_at)}
+            {getRelativeTime(workflowRun.created_at)}
+          </span>
+        </div>
+        <div className="flex items-center gap-1" title="Duration">
+          <Timer className="size-4 text-yellow-500" />
+          <span className="text-gray-600 text-sm">
+            {getRelativeTime(workflowRun.created_at)}
           </span>
         </div>
       </div>
-      <Separator />
-      <div className="flex items-center justify-between">
-        <span className="text-gray-600 text-sm">Duration:</span>
+    </CardContent>
+    <CardFooter className="mt-auto">
+      <div className="flex w-full items-center justify-end">
         <Button variant="outline" size="icon">
           <RotateCcw className="size-4" />
         </Button>
       </div>
-    </CardContent>
+    </CardFooter>
   </Card>
 );
