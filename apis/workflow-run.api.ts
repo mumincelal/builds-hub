@@ -1,4 +1,5 @@
 import { axiosInstance } from "@/apis/base.api";
+import { WORKFLOW_RUNS_PER_PAGE } from "@/configs/constants";
 import type {
   GitHubWorkflowRun,
   GitHubWorkflowRunList
@@ -7,11 +8,18 @@ import { AxiosError, HttpStatusCode } from "axios";
 
 export const getWorkflowRuns = async (
   owner: string,
-  repo: string
+  repo: string,
+  page = 1
 ): Promise<GitHubWorkflowRunList> => {
   try {
     const response = await axiosInstance.get<GitHubWorkflowRunList>(
-      `/repos/${owner}/${repo}/actions/runs`
+      `/repos/${owner}/${repo}/actions/runs`,
+      {
+        params: {
+          perPage: WORKFLOW_RUNS_PER_PAGE,
+          page
+        }
+      }
     );
 
     if (response.status === HttpStatusCode.Ok) {

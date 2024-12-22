@@ -1,21 +1,22 @@
 import { ConditionalShow } from "@/components/conditional-show";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { AlertCircle, RotateCcw } from "lucide-react";
+import { AlertCircle } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 
-type RepositoriesErrorProps = Readonly<{
+type WorkflowRunsErrorProps = Readonly<{
   message: string;
   onRetry?: () => void;
 }>;
 
-export const RepositoriesError = ({
+export const WorkflowRunsError = ({
   message,
   onRetry
-}: RepositoriesErrorProps) => (
+}: WorkflowRunsErrorProps) => (
   <Card className="flex max-w-lg flex-col items-center justify-center gap-4 p-8 text-center">
     <AlertCircle className="size-12 text-destructive" />
     <div className="space-y-2">
-      <h3 className="font-semibold text-xl">Failed to load repositories</h3>
+      <h3 className="font-semibold text-xl">Failed to load workflow runs</h3>
       <p className="text-muted-foreground text-sm">{message}</p>
     </div>
     <ConditionalShow when={!!onRetry}>

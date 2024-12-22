@@ -1,9 +1,8 @@
+import { WorkflowRunsSheet } from "@/app/(authenticated)/dashboard/_components/workflow-runs-sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { CardTitle } from "@/components/ui/card";
 import { GitHubIcon } from "@/icons/github";
 import { abbreviate } from "@/utils/string";
-import { Play } from "lucide-react";
 import Link from "next/link";
 
 type RepositoryCardHeaderProps = Readonly<{
@@ -34,10 +33,7 @@ export const RepositoryCardHeader = ({
         <h3 className="truncate font-semibold text-xl">{name}</h3>
       </Link>
 
-      <Button variant="outline" className="gap-2">
-        <Play className="size-4" />
-        View Workflows Runs
-      </Button>
+      <WorkflowRunsSheet repositoryName={name} owner={owner.name} />
     </div>
     <Link
       href={owner.url}

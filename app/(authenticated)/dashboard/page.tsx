@@ -47,8 +47,7 @@ const Dashboard = () => {
           ))
         )}
       </div>
-
-      {hasNextPage && (
+      <ConditionalShow when={hasNextPage}>
         <div className="flex justify-center">
           <Button
             variant="outline"
@@ -66,7 +65,7 @@ const Dashboard = () => {
             </ConditionalShow>
           </Button>
         </div>
-      )}
+      </ConditionalShow>
     </div>
   );
 };
