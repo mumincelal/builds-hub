@@ -34,7 +34,7 @@ const steps = [
 export const HowItWorks = () => (
   <section id="how-it-works" className="bg-white py-10 lg:py-20">
     <div className="container mx-auto">
-      <div className="flex flex-col items-center space-y-12">
+      <div className="flex flex-col items-center gap-12">
         <div className="space-y-2 text-center">
           <h2 className="font-bold text-3xl text-gray-900 sm:text-4xl">
             How It Works
@@ -43,14 +43,14 @@ export const HowItWorks = () => (
             Get started with BuildsHub in four simple steps
           </p>
         </div>
-        <div className="flex flex-col space-y-12">
+        <div className="flex flex-col gap-12">
           {steps.map((step, index) => (
-            <div key={step.key} className="flex items-start space-x-4">
+            <div key={step.key} className="flex items-start gap-4">
               <div className="flex-shrink-0 rounded-full bg-indigo-100 p-3">
                 <step.icon className="size-6 text-indigo-600" />
               </div>
-              <div className="flex flex-col space-y-2">
-                <div className="flex items-center space-x-2">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
                   <span className="font-medium text-indigo-600 text-sm">
                     Step {index + 1}
                   </span>

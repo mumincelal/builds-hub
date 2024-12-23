@@ -5,7 +5,7 @@ export const Footer = () => (
   <footer className="bg-gray-900 py-10">
     <div className="container mx-auto">
       <div className="flex flex-col items-center justify-between text-white md:flex-row">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-2">
           <LucideBoxes className="size-8 text-white" />
           <span className="font-medium text-lg">Builds Hub</span>
         </div>

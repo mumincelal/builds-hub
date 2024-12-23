@@ -1,14 +1,29 @@
 import { getWorkflowRun, getWorkflowRuns } from "@/apis/workflow-run.api";
-import type {
-  GitHubWorkflowRun,
-  GitHubWorkflowRunList
-} from "@/configs/github-api";
-import { useQuery } from "@tanstack/react-query";
+import { WORKFLOW_RUNS_PER_PAGE } from "@/configs/constants";
+import type { GitHubWorkflowRun } from "@/configs/github-api";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
-export const useWorkflowRuns = (owner: string, repo: string) =>
-  useQuery<GitHubWorkflowRunList, Error>({
-    queryKey: ["workflowRun", owner, repo],
-    queryFn: () => getWorkflowRuns(owner, repo)
+export const useWorkflowRuns = ({
+  owner,
+  repository,
+  enabled = true
+}: {
+  owner: string;
+  repository: string;
+  enabled: boolean | undefined;
+}) =>
+  useInfiniteQuery<GitHubWorkflowRun[], Error>({
+    queryKey: ["workflowRun", owner, repository],
+    queryFn: ({ pageParam = 1 }) =>
+      getWorkflowRuns(owner, repository, pageParam as number),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.length === WORKFLOW_RUNS_PER_PAGE
+        ? allPages.length + 1
+        : undefined;
+    },
+    enabled,
+    refetchInterval: 10000
   });
 
 export const useWorkflowRun = (

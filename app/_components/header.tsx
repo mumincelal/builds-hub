@@ -23,9 +23,9 @@ export const Header = () => {
     <header className="bg-white/80 backdrop-blur-md">
       <div className="container mx-auto">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex cursor-pointer items-center space-x-2 transition-opacity hover:opacity-90">
+          <div className="flex cursor-pointer items-center gap-2 transition-opacity hover:opacity-90">
             <LucideBoxes className="size-8 text-gray-600" />
-            <div className="flex items-baseline space-x-1.5 text-2xl">
+            <div className="flex items-baseline gap-1.5 text-2xl">
               <span className="font-extrabold text-gray-600">Builds</span>
               <span className="font-light text-gray-900">Hub</span>
             </div>
@@ -50,14 +50,10 @@ export const Header = () => {
           </NavigationMenu>
           <ConditionalShow
             when={session.data}
-            fallback={
-              <Button onClick={handleSignIn()} disabled>
-                Get Started
-              </Button>
-            }
+            fallback={<Button onClick={handleSignIn()}>Get Started</Button>}
           >
             <Link href="/dashboard" passHref>
-              <Button disabled>Dashboard</Button>
+              <Button>Dashboard</Button>
             </Link>
           </ConditionalShow>
         </div>

@@ -22,37 +22,30 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         muted: {
-          // biome-ignore lint/style/useNamingConvention: TailwindCSS related
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))"
         },
         primary: {
-          // biome-ignore lint/style/useNamingConvention: TailwindCSS related
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))"
         },
         accent: {
-          // biome-ignore lint/style/useNamingConvention: TailwindCSS related
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))"
         },
         card: {
-          // biome-ignore lint/style/useNamingConvention: TailwindCSS related
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))"
         },
         popover: {
-          // biome-ignore lint/style/useNamingConvention: TailwindCSS related
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))"
         },
         secondary: {
-          // biome-ignore lint/style/useNamingConvention: TailwindCSS related
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))"
         },
         destructive: {
-          // biome-ignore lint/style/useNamingConvention: TailwindCSS related
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))"
         },
@@ -65,6 +58,16 @@ const config = {
           "3": "hsl(var(--chart-3))",
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))"
+        },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          accent: "hsl(var(--sidebar-accent))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))"
         }
       },
       keyframes: {

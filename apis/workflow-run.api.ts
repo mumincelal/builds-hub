@@ -1,4 +1,5 @@
 import { axiosInstance } from "@/apis/base.api";
+import { WORKFLOW_RUNS_PER_PAGE } from "@/configs/constants";
 import type {
   GitHubWorkflowRun,
   GitHubWorkflowRunList
@@ -7,15 +8,23 @@ import { AxiosError, HttpStatusCode } from "axios";
 
 export const getWorkflowRuns = async (
   owner: string,
-  repo: string
-): Promise<GitHubWorkflowRunList> => {
+  repo: string,
+  page = 1
+): Promise<GitHubWorkflowRun[]> => {
   try {
     const response = await axiosInstance.get<GitHubWorkflowRunList>(
-      `/repos/${owner}/${repo}/actions/runs`
+      `/repos/${owner}/${repo}/actions/runs`,
+      {
+        params: {
+          // biome-ignore lint/style/useNamingConvention: <explanation>
+          per_page: WORKFLOW_RUNS_PER_PAGE,
+          page
+        }
+      }
     );
 
     if (response.status === HttpStatusCode.Ok) {
-      return response.data;
+      return response.data.workflow_runs;
     }
 
     throw new Error("An error occurred while fetching workflow runs");
@@ -73,57 +82,5 @@ export const cancelWorkflowRun = async (
     }
 
     throw new Error("An error occurred while cancelling workflow run");
-  }
-};
-
-export const rerunWorkflowRun = async (
-  owner: string,
-  repo: string,
-  runId: number
-): Promise<void> => {
-  try {
-    const response = await axiosInstance.post<void>(
-      `/repos/${owner}/${repo}/actions/runs/${runId}/rerun`
-    );
-
-    if (response.status === HttpStatusCode.Created) {
-      return;
-    }
-
-    throw new Error("An error occurred while rerunning workflow run");
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(error.response?.data.message);
-    }
-
-    throw new Error("An error occurred while rerunning workflow run");
-  }
-};
-
-export const rerunFailedWorkflowRunJobs = async (
-  owner: string,
-  repo: string,
-  runId: number
-): Promise<void> => {
-  try {
-    const response = await axiosInstance.post<void>(
-      `/repos/${owner}/${repo}/actions/runs/${runId}/rerun-failed-jobs`
-    );
-
-    if (response.status === HttpStatusCode.Created) {
-      return;
-    }
-
-    throw new Error(
-      "An error occurred while rerunning failed workflow run jobs"
-    );
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(error.response?.data.message);
-    }
-
-    throw new Error(
-      "An error occurred while rerunning failed workflow run jobs"
-    );
   }
 };

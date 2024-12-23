@@ -1,10 +1,22 @@
 import { axiosInstance } from "@/apis/base.api";
+import { REPOSITORIES_PER_PAGE } from "@/configs/constants";
 import type { GitHubRepository } from "@/configs/github-api";
 import { AxiosError, HttpStatusCode } from "axios";
 
-export const getRepositories = async (): Promise<GitHubRepository[]> => {
+export const getRepositories = async (
+  page = 1
+): Promise<GitHubRepository[]> => {
   try {
-    const response = await axiosInstance.get<GitHubRepository[]>("/user/repos");
+    const response = await axiosInstance.get<GitHubRepository[]>(
+      "/user/repos",
+      {
+        params: {
+          // biome-ignore lint/style/useNamingConvention: <explanation>
+          per_page: REPOSITORIES_PER_PAGE,
+          page
+        }
+      }
+    );
 
     if (response.status === HttpStatusCode.Ok) {
       return response.data;

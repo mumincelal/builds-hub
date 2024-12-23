@@ -111,6 +111,14 @@ export type GitHubUser = {
   type: string;
   user_view_type: string;
   site_admin: boolean;
+  plan: GitHubUserPlan;
+};
+
+export type GitHubUserPlan = {
+  name: string;
+  space: number;
+  private_repos: number;
+  collaborators: number;
 };
 
 export type GitHubLicense = {
