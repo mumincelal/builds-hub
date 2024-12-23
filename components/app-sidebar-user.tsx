@@ -24,7 +24,7 @@ export const AppSidebarUser = () => {
   const session = useSession();
 
   const handleSignOut = () => {
-    return async () => await signOut({ callbackUrl: "/dashboard" });
+    return async () => await signOut({ callbackUrl: "/" });
   };
 
   if (

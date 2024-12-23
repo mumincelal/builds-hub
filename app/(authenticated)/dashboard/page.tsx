@@ -31,12 +31,14 @@ const Dashboard = () => {
   }
 
   if (!data || data.pages[0]?.length === 0) {
-    return <div>No repositories found.</div>;
+    return (
+      <p className="flex size-full items-center justify-center text-muted-foreground">
+        No repositories found.
+      </p>
+    );
   }
 
-  const handleFetchNextPage = () => {
-    return () => fetchNextPage();
-  };
+  const handleFetchNextPage = () => fetchNextPage();
 
   return (
     <div className="space-y-8">
@@ -56,7 +58,7 @@ const Dashboard = () => {
           >
             <ConditionalShow
               when={isFetchingNextPage}
-              fallback="Load More Repositories"
+              fallback="Load more repositories"
             >
               <>
                 <Loader2 className="mr-2 size-4 animate-spin" />

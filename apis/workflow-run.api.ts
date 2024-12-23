@@ -10,7 +10,7 @@ export const getWorkflowRuns = async (
   owner: string,
   repo: string,
   page = 1
-): Promise<GitHubWorkflowRunList> => {
+): Promise<GitHubWorkflowRun[]> => {
   try {
     const response = await axiosInstance.get<GitHubWorkflowRunList>(
       `/repos/${owner}/${repo}/actions/runs`,
@@ -24,7 +24,7 @@ export const getWorkflowRuns = async (
     );
 
     if (response.status === HttpStatusCode.Ok) {
-      return response.data;
+      return response.data.workflow_runs;
     }
 
     throw new Error("An error occurred while fetching workflow runs");
@@ -82,57 +82,5 @@ export const cancelWorkflowRun = async (
     }
 
     throw new Error("An error occurred while cancelling workflow run");
-  }
-};
-
-export const rerunWorkflowRun = async (
-  owner: string,
-  repo: string,
-  runId: number
-): Promise<void> => {
-  try {
-    const response = await axiosInstance.post<void>(
-      `/repos/${owner}/${repo}/actions/runs/${runId}/rerun`
-    );
-
-    if (response.status === HttpStatusCode.Created) {
-      return;
-    }
-
-    throw new Error("An error occurred while rerunning workflow run");
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(error.response?.data.message);
-    }
-
-    throw new Error("An error occurred while rerunning workflow run");
-  }
-};
-
-export const rerunFailedWorkflowRunJobs = async (
-  owner: string,
-  repo: string,
-  runId: number
-): Promise<void> => {
-  try {
-    const response = await axiosInstance.post<void>(
-      `/repos/${owner}/${repo}/actions/runs/${runId}/rerun-failed-jobs`
-    );
-
-    if (response.status === HttpStatusCode.Created) {
-      return;
-    }
-
-    throw new Error(
-      "An error occurred while rerunning failed workflow run jobs"
-    );
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      throw new Error(error.response?.data.message);
-    }
-
-    throw new Error(
-      "An error occurred while rerunning failed workflow run jobs"
-    );
   }
 };

@@ -1,5 +1,5 @@
+import { WorkflowRunRerunJobs } from "@/app/(authenticated)/dashboard/_components/workflow-run-rerun-jobs";
 import { WorkflowRunStatus } from "@/app/(authenticated)/dashboard/_components/workflow-run-status";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { GitHubWorkflowRun } from "@/configs/github-api";
 import { getRelativeTime } from "@/utils/date";
-import { Clock, GitBranch, RotateCcw, Timer } from "lucide-react";
+import { Clock, GitBranch, Timer } from "lucide-react";
 import Link from "next/link";
 
 type WorkflowRunCardProps = Readonly<{
@@ -28,7 +28,7 @@ export const WorkflowRunCard = ({ workflowRun }: WorkflowRunCardProps) => (
             className="flex items-center gap-2 outline-none transition-colors hover:text-primary focus-visible:text-primary"
           >
             <h3 className="truncate font-semibold text-xl">
-              {workflowRun.name}
+              {workflowRun.name} #{workflowRun.run_number}
             </h3>
           </Link>
           <WorkflowRunStatus
@@ -62,9 +62,11 @@ export const WorkflowRunCard = ({ workflowRun }: WorkflowRunCardProps) => (
     </CardContent>
     <CardFooter className="mt-auto">
       <div className="flex w-full items-center justify-end">
-        <Button variant="outline" size="icon">
-          <RotateCcw className="size-4" />
-        </Button>
+        <WorkflowRunRerunJobs
+          owner={workflowRun.actor.login}
+          repo={workflowRun.repository.name}
+          runId={workflowRun.id}
+        />
       </div>
     </CardFooter>
   </Card>

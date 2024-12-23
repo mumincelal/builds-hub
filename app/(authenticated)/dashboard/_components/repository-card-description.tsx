@@ -9,6 +9,6 @@ export const RepositoryCardDescription = ({
   description
 }: RepositoryCardDescriptionProps) => (
   <ConditionalShow when={description}>
-    <CardDescription>{description}</CardDescription>
+    <CardDescription className="text-balance">{description}</CardDescription>
   </ConditionalShow>
 );

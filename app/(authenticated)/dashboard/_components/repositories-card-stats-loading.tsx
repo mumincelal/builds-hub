@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export const RepositoryCardStatsLoading = () => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-wrap items-center gap-4">
       {Array.from({ length: 4 }).map((_, index) => (
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <div key={index} className="flex items-center gap-1">
