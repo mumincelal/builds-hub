@@ -1,6 +1,3 @@
-// biome-ignore lint/nursery/useComponentExportOnlyModules: <explanation>
-export const dynamic = "force-dynamic";
-
 import { AppSidebar, type AppSidebarProps } from "@/components/app-sidebar";
 import { AppSidebarHeader } from "@/components/app-sidebar-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";

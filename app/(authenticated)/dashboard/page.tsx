@@ -1,8 +1,5 @@
 "use client";
 
-// biome-ignore lint/nursery/useComponentExportOnlyModules: <explanation>
-export const dynamic = "force-dynamic";
-
 import { RepositoriesError } from "@/app/(authenticated)/dashboard/_components/repositories-error";
 import { RepositoriesLoading } from "@/app/(authenticated)/dashboard/_components/repositories-loading";
 import { RepositoryCard } from "@/app/(authenticated)/dashboard/_components/repository-card";
