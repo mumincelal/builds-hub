@@ -104,3 +104,45 @@ export const rerunFailedWorkflowRunJobs = async (
     );
   }
 };
+
+export const downloadWorkflowRunJobLogs = async (
+  owner: string,
+  repo: string,
+  jobId: number
+): Promise<void> => {
+  try {
+    const response = await axiosInstance.get<Blob>(
+      `/repos/${owner}/${repo}/actions/jobs/${jobId}/logs`,
+      {
+        responseType: "blob"
+      }
+    );
+
+    if (response.status === HttpStatusCode.Ok) {
+      const href = window.URL.createObjectURL(response.data);
+
+      const anchorElement = document.createElement("a");
+
+      anchorElement.href = href;
+      anchorElement.download = `${owner}-${repo}-${jobId}.log`;
+
+      document.body.appendChild(anchorElement);
+      anchorElement.click();
+
+      document.body.removeChild(anchorElement);
+      window.URL.revokeObjectURL(href);
+    }
+
+    throw new Error(
+      "An error occurred while downloading workflow run job logs"
+    );
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      throw new Error(error.response?.data.message);
+    }
+
+    throw new Error(
+      "An error occurred while downloading workflow run job logs"
+    );
+  }
+};

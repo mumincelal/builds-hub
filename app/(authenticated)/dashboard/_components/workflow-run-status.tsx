@@ -5,15 +5,17 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip";
 import { Tooltip } from "@/components/ui/tooltip";
-import { GitHubWorkflowRun } from "@/configs/github-api";
+import { GitHubWorkflowRun, GitHubWorkflowRunJob } from "@/configs/github-api";
 import { cn } from "@/lib/tailwind";
 import { CheckCircle, Clock } from "lucide-react";
 import { CircleAlert } from "lucide-react";
 import { XCircle } from "lucide-react";
 
 type WorkflowRunStatusProps = Readonly<{
-  status: GitHubWorkflowRun["status"];
-  conclusion: GitHubWorkflowRun["conclusion"];
+  status: string;
+  conclusion:
+    | GitHubWorkflowRun["conclusion"]
+    | GitHubWorkflowRunJob["conclusion"];
 }>;
 
 export const WorkflowRunStatus = ({
@@ -118,7 +120,10 @@ export const WorkflowRunStatus = ({
     className,
     icon: Icon,
     label
-  } = conclusionVariants[conclusion] ?? statusVariants[status];
+  } = (conclusion &&
+    conclusionVariants[conclusion as keyof typeof conclusionVariants]) ??
+  (status && statusVariants[status as keyof typeof statusVariants]) ??
+  statusVariants.waiting;
 
   return (
     <TooltipProvider>
