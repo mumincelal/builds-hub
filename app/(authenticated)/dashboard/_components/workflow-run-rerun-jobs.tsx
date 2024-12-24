@@ -42,8 +42,9 @@ export const WorkflowRunRerunJobs = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="outline">
           <RotateCcw className="size-4" />
+          <span>Re-run</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

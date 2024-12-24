@@ -1,3 +1,4 @@
+import { WorkflowRunJobs } from "@/app/(authenticated)/dashboard/_components/workflow-run-jobs";
 import { WorkflowRunRerunJobs } from "@/app/(authenticated)/dashboard/_components/workflow-run-rerun-jobs";
 import { WorkflowRunStatus } from "@/app/(authenticated)/dashboard/_components/workflow-run-status";
 import {
@@ -61,7 +62,12 @@ export const WorkflowRunCard = ({ workflowRun }: WorkflowRunCardProps) => (
       </div>
     </CardContent>
     <CardFooter className="mt-auto">
-      <div className="flex w-full items-center justify-end">
+      <div className="flex w-full items-center justify-between">
+        <WorkflowRunJobs
+          owner={workflowRun.actor.login}
+          repo={workflowRun.repository.name}
+          run={workflowRun}
+        />
         <WorkflowRunRerunJobs
           owner={workflowRun.actor.login}
           repo={workflowRun.repository.name}
