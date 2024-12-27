@@ -21,7 +21,7 @@ export const RepositoryCardHeader = ({
   owner
 }: RepositoryCardHeaderProps) => (
   <CardTitle className="space-y-3">
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-2">
       <Link
         href={url}
         target="_blank"
@@ -30,7 +30,9 @@ export const RepositoryCardHeader = ({
         onClick={(e) => e.stopPropagation()}
       >
         <GitHubIcon className="size-4 text-muted-foreground" />
-        <h3 className="truncate font-semibold text-xl">{name}</h3>
+        <h3 className="truncate text-balance font-semibold text-xl lg:text-md">
+          {name}
+        </h3>
       </Link>
 
       <WorkflowRunsSheet repositoryName={name} owner={owner.name} />

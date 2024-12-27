@@ -56,7 +56,7 @@ export const WorkflowRunJobs = ({ owner, repo, run }: WorkflowRunJobsProps) => {
           <span>Show Jobs</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-1/2 md:w-1/3 lg:w-1/4">
+      <SheetContent className="w-2/3 md:w-1/3 lg:w-1/4">
         <SheetHeader>
           <SheetTitle>
             Jobs of&nbsp;

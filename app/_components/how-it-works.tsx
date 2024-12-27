@@ -44,20 +44,15 @@ export const HowItWorks = () => (
           </p>
         </div>
         <div className="flex flex-col gap-12">
-          {steps.map((step, index) => (
+          {steps.map((step) => (
             <div key={step.key} className="flex items-start gap-4">
               <div className="flex-shrink-0 rounded-full bg-indigo-100 p-3">
                 <step.icon className="size-6 text-indigo-600" />
               </div>
               <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="font-medium text-indigo-600 text-sm">
-                    Step {index + 1}
-                  </span>
-                  <h3 className="font-medium text-gray-900 text-lg">
-                    {step.title}
-                  </h3>
-                </div>
+                <h3 className="font-medium text-gray-900 text-lg">
+                  {step.title}
+                </h3>
                 <p className="text-gray-600">{step.description}</p>
               </div>
             </div>

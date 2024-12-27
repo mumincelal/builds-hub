@@ -18,7 +18,7 @@ export const Hero = () => {
   return (
     <section className="bg-gray-50 py-10 lg:py-20">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
           <div className="space-y-6">
             <h1 className="space-y-1">
               <span className="block font-semibold text-base text-indigo-600 uppercase tracking-wide">

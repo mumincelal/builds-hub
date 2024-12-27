@@ -52,7 +52,7 @@ export const WorkflowRunsSheet = ({
       <SheetTrigger asChild>
         <Button variant="outline" className="gap-2">
           <Play className="size-4" />
-          <span className="hidden lg:inline-block">View Workflows Runs</span>
+          <span className="hidden lg:block">Workflows Runs</span>
         </Button>
       </SheetTrigger>
       <SheetContent className="w-full md:w-1/2 lg:w-1/3">
