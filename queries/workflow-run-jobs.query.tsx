@@ -1,6 +1,6 @@
 import {
-  downloadWorkflowRunJobLogs,
   getWorkflowJobs,
+  getWorkflowRunJobLogs,
   rerunFailedWorkflowRunJobs,
   rerunWorkflowRunJobs
 } from "@/apis/workflow-run-job.api";
@@ -38,9 +38,19 @@ export const useWorkflowRunJobs = ({
     enabled
   });
 
-export const useDownloadWorkflowRunJobLogs = () =>
-  useMutation<void, Error, { owner: string; repo: string; jobId: number }>({
-    mutationKey: ["workflow-run-job-logs"],
-    mutationFn: (data) =>
-      downloadWorkflowRunJobLogs(data.owner, data.repo, data.jobId)
+export const useGetWorkflowRunJobLogs = ({
+  owner,
+  repo,
+  jobId,
+  enabled = true
+}: {
+  owner: string;
+  repo: string;
+  jobId: number;
+  enabled: boolean;
+}) =>
+  useQuery<string, Error>({
+    queryKey: ["workflow-run-job-logs", owner, repo, jobId],
+    queryFn: () => getWorkflowRunJobLogs(owner, repo, jobId),
+    enabled
   });

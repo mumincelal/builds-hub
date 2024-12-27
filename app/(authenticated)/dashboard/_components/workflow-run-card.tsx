@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { GitHubWorkflowRun } from "@/configs/github-api";
 import { getRelativeTime } from "@/utils/date";
-import { Clock, GitBranch, Timer } from "lucide-react";
+import { Clock, GitBranch } from "lucide-react";
 import Link from "next/link";
 
 type WorkflowRunCardProps = Readonly<{
@@ -50,15 +50,13 @@ export const WorkflowRunCard = ({ workflowRun }: WorkflowRunCardProps) => (
         <div className="flex items-center gap-1" title="Started">
           <Clock className="size-4 text-green-500" />
           <span className="text-gray-600 text-sm">
-            {getRelativeTime(workflowRun.created_at)}
+            {getRelativeTime(workflowRun.run_started_at)}
           </span>
         </div>
-        <div className="flex items-center gap-1" title="Duration">
+        {/* <div className="flex items-center gap-1" title="Duration">
           <Timer className="size-4 text-yellow-500" />
-          <span className="text-gray-600 text-sm">
-            {getRelativeTime(workflowRun.created_at)}
-          </span>
-        </div>
+          <span className="text-gray-600 text-sm">{workflowRun.at}</span>
+        </div> */}
       </div>
     </CardContent>
     <CardFooter className="mt-auto">

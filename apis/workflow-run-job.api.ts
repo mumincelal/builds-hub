@@ -105,11 +105,11 @@ export const rerunFailedWorkflowRunJobs = async (
   }
 };
 
-export const downloadWorkflowRunJobLogs = async (
+export const getWorkflowRunJobLogs = async (
   owner: string,
   repo: string,
   jobId: number
-): Promise<void> => {
+): Promise<string> => {
   try {
     const response = await axiosInstance.get<Blob>(
       `/repos/${owner}/${repo}/actions/jobs/${jobId}/logs`,
@@ -119,18 +119,7 @@ export const downloadWorkflowRunJobLogs = async (
     );
 
     if (response.status === HttpStatusCode.Ok) {
-      const href = window.URL.createObjectURL(response.data);
-
-      const anchorElement = document.createElement("a");
-
-      anchorElement.href = href;
-      anchorElement.download = `${owner}-${repo}-${jobId}.log`;
-
-      document.body.appendChild(anchorElement);
-      anchorElement.click();
-
-      document.body.removeChild(anchorElement);
-      window.URL.revokeObjectURL(href);
+      return response.data.text();
     }
 
     throw new Error(
