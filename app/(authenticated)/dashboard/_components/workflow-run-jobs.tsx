@@ -15,11 +15,8 @@ import {
   SheetTrigger
 } from "@/components/ui/sheet";
 import { GitHubWorkflowRun } from "@/configs/github-api";
-import {
-  useDownloadWorkflowRunJobLogs,
-  useWorkflowRunJobs
-} from "@/queries/workflow-run-jobs.query";
-import { Boxes, Download } from "lucide-react";
+import { useWorkflowRunJobs } from "@/queries/workflow-run-jobs.query";
+import { Boxes } from "lucide-react";
 import React from "react";
 
 type WorkflowRunJobsProps = Readonly<{
@@ -30,23 +27,12 @@ type WorkflowRunJobsProps = Readonly<{
 
 export const WorkflowRunJobs = ({ owner, repo, run }: WorkflowRunJobsProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { data } = useWorkflowRunJobs({
+  const { data: workflowRunJobs } = useWorkflowRunJobs({
     owner,
     repo,
     runId: run.id,
     enabled: isOpen
   });
-
-  const downloadWorkflowRunJobLogsMutation = useDownloadWorkflowRunJobLogs();
-
-  const handleDownloadLogs = (jobId: number) => {
-    return () =>
-      downloadWorkflowRunJobLogsMutation.mutate({
-        owner,
-        repo,
-        jobId
-      });
-  };
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen} modal={false}>
@@ -68,8 +54,8 @@ export const WorkflowRunJobs = ({ owner, repo, run }: WorkflowRunJobsProps) => {
             View the jobs for this workflow run.
           </SheetDescription>
         </SheetHeader>
-        <Accordion type="single" collapsible className="w-full">
-          {data?.jobs.map((job) => (
+        <Accordion type="single" className="w-full" collapsible>
+          {workflowRunJobs?.jobs.map((job) => (
             <AccordionItem key={job.id} value={job.id.toString()}>
               <AccordionTrigger>{job.name}</AccordionTrigger>
               <AccordionContent>
@@ -83,12 +69,8 @@ export const WorkflowRunJobs = ({ owner, repo, run }: WorkflowRunJobsProps) => {
                       <span>{step.name}</span>
                     </div>
                   ))}
-                  <Button
-                    variant="outline"
-                    onClick={handleDownloadLogs(job.id)}
-                  >
-                    <Download className="size-4" />
-                    <span>Download Logs</span>
+                  <Button variant="outline">
+                    <span>Show Logs</span>
                   </Button>
                 </div>
               </AccordionContent>
