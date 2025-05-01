@@ -23,8 +23,8 @@ export const AppSidebarUser = () => {
   const { isMobile } = useSidebar();
   const session = useSession();
 
-  const handleSignOut = () => {
-    return async () => await signOut({ callbackUrl: "/" });
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: "/" });
   };
 
   if (

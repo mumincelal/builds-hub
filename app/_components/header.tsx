@@ -33,18 +33,20 @@ export const Header = () => {
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="#features" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Features
-                  </NavigationMenuLink>
-                </Link>
+                <NavigationMenuLink
+                  href="#features"
+                  className={navigationMenuTriggerStyle()}
+                >
+                  Features
+                </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#how-it-works" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    How it Works
-                  </NavigationMenuLink>
-                </Link>
+                <NavigationMenuLink
+                  href="#how-it-works"
+                  className={navigationMenuTriggerStyle()}
+                >
+                  How it Works
+                </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
