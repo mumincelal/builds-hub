@@ -1,7 +1,7 @@
-import { env } from "@/configs/env";
+import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { withAuth } from "next-auth/middleware";
-import { NextResponse } from "next/server";
+import { env } from "@/configs/env";
 
 // biome-ignore lint/style/noDefaultExport: Next-Auth
 export default withAuth(
