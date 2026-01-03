@@ -1,9 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/tailwind";
-// biome-ignore lint/style/noNamespaceImport: <explanation>
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import React from "react";
+import { cn } from "@/lib/tailwind";
 
 const Avatar = React.forwardRef<
   React.ComponentRef<typeof AvatarPrimitive.Root>,

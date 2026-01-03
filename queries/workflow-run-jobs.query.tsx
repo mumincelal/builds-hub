@@ -1,11 +1,11 @@
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   getWorkflowJobs,
   getWorkflowRunJobLogs,
   rerunFailedWorkflowRunJobs,
   rerunWorkflowRunJobs
 } from "@/apis/workflow-run-job.api";
-import { GitHubWorkflowRunJobList } from "@/configs/github-api";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import type { GitHubWorkflowRunJobList } from "@/configs/github-api";
 
 export const useRerunWorkflowRunJobs = () =>
   useMutation<void, Error, { owner: string; repo: string; runId: number }>({

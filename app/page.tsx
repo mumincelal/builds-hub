@@ -14,5 +14,4 @@ const Home = () => (
   </div>
 );
 
-// biome-ignore lint/style/noDefaultExport: Next.js
 export default Home;

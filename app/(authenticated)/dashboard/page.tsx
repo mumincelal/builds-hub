@@ -1,12 +1,12 @@
 "use client";
 
+import { Loader2 } from "lucide-react";
 import { RepositoriesError } from "@/app/(authenticated)/dashboard/_components/repositories-error";
 import { RepositoriesLoading } from "@/app/(authenticated)/dashboard/_components/repositories-loading";
 import { RepositoryCard } from "@/app/(authenticated)/dashboard/_components/repository-card";
 import { ConditionalShow } from "@/components/conditional-show";
 import { Button } from "@/components/ui/button";
 import { useRepositories } from "@/queries/repository.query";
-import { Loader2 } from "lucide-react";
 
 const Dashboard = () => {
   const {
@@ -55,16 +55,12 @@ const Dashboard = () => {
           <Button
             variant="outline"
             onClick={handleFetchNextPage}
-            disabled={isFetchingNextPage}
-          >
+            disabled={isFetchingNextPage}>
             <ConditionalShow
               when={isFetchingNextPage}
-              fallback="Load more repositories"
-            >
-              <>
-                <Loader2 className="mr-2 size-4 animate-spin" />
-                Loading more repositories...
-              </>
+              fallback="Load more repositories">
+              <Loader2 className="mr-2 size-4 animate-spin" />
+              Loading more repositories...
             </ConditionalShow>
           </Button>
         </div>
@@ -73,5 +69,4 @@ const Dashboard = () => {
   );
 };
 
-// biome-ignore lint/style/noDefaultExport: Next.js
 export default Dashboard;

@@ -1,7 +1,7 @@
+import { LayoutDashboard } from "lucide-react";
 import { AppSidebar, type AppSidebarProps } from "@/components/app-sidebar";
 import { AppSidebarHeader } from "@/components/app-sidebar-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { LayoutDashboard } from "lucide-react";
 
 const menuItems: AppSidebarProps["menuItems"] = [
   {
@@ -26,5 +26,4 @@ const Layout = ({
   </SidebarProvider>
 );
 
-// biome-ignore lint/style/noDefaultExport: Next.js
 export default Layout;

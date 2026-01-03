@@ -1,4 +1,7 @@
 "use client";
+import { LucideBoxes } from "lucide-react";
+import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
 import { ConditionalShow } from "@/components/conditional-show";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,9 +11,6 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
-import { LucideBoxes } from "lucide-react";
-import { signIn, useSession } from "next-auth/react";
-import Link from "next/link";
 
 export const Header = () => {
   const session = useSession();
@@ -35,16 +35,14 @@ export const Header = () => {
               <NavigationMenuItem>
                 <NavigationMenuLink
                   href="#features"
-                  className={navigationMenuTriggerStyle()}
-                >
+                  className={navigationMenuTriggerStyle()}>
                   Features
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink
                   href="#how-it-works"
-                  className={navigationMenuTriggerStyle()}
-                >
+                  className={navigationMenuTriggerStyle()}>
                   How it Works
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -52,8 +50,7 @@ export const Header = () => {
           </NavigationMenu>
           <ConditionalShow
             when={session.data}
-            fallback={<Button onClick={handleSignIn()}>Get Started</Button>}
-          >
+            fallback={<Button onClick={handleSignIn()}>Get Started</Button>}>
             <Link href="/dashboard" passHref>
               <Button>Dashboard</Button>
             </Link>

@@ -48,8 +48,7 @@ export const Features = () => (
           {features.map((feature) => (
             <div
               key={feature.key}
-              className="group hover:-translate-y-1 transform rounded-xl border border-gray-100 bg-white p-8 shadow-md transition-all duration-300 hover:shadow-xl"
-            >
+              className="group hover:-translate-y-1 transform rounded-xl border border-gray-100 bg-white p-8 shadow-md transition-all duration-300 hover:shadow-xl">
               <div className="rounded-lg bg-white p-3">
                 <feature.icon className="h-10 w-10 text-indigo-600" />
               </div>

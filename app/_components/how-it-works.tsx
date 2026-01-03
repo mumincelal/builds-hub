@@ -46,7 +46,7 @@ export const HowItWorks = () => (
         <div className="flex flex-col gap-12">
           {steps.map((step) => (
             <div key={step.key} className="flex items-start gap-4">
-              <div className="flex-shrink-0 rounded-full bg-indigo-100 p-3">
+              <div className="shrink-0 rounded-full bg-indigo-100 p-3">
                 <step.icon className="size-6 text-indigo-600" />
               </div>
               <div className="flex flex-col gap-2">

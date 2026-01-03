@@ -1,7 +1,7 @@
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { getWorkflowRun, getWorkflowRuns } from "@/apis/workflow-run.api";
 import { WORKFLOW_RUNS_PER_PAGE } from "@/configs/constants";
 import type { GitHubWorkflowRun } from "@/configs/github-api";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 export const useWorkflowRuns = ({
   owner,

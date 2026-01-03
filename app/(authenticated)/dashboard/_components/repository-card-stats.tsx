@@ -1,6 +1,6 @@
+import { CircleAlert, Eye, GitBranch, Star } from "lucide-react";
 import { cn } from "@/lib/tailwind";
 import { formatNumber } from "@/utils/formatter";
-import { CircleAlert, Eye, GitBranch, Star } from "lucide-react";
 
 type RepositoryCardStatsProps = Readonly<{
   stars: number;

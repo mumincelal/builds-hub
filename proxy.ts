@@ -3,7 +3,6 @@ import { getToken } from "next-auth/jwt";
 import { withAuth } from "next-auth/middleware";
 import { env } from "@/configs/env";
 
-// biome-ignore lint/style/noDefaultExport: Next-Auth
 export default withAuth(
   async (req) => {
     const url = req.nextUrl.clone();

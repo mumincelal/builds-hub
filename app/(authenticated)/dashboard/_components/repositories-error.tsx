@@ -1,7 +1,7 @@
+import { AlertCircle, RotateCcw } from "lucide-react";
 import { ConditionalShow } from "@/components/conditional-show";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { AlertCircle, RotateCcw } from "lucide-react";
 
 type RepositoriesErrorProps = Readonly<{
   message: string;

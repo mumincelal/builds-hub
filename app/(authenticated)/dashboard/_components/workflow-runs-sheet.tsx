@@ -1,5 +1,8 @@
 "use client";
 
+import { Loader2, Play } from "lucide-react";
+import React from "react";
+import { useInView } from "react-intersection-observer";
 import { WorkflowRunCard } from "@/app/(authenticated)/dashboard/_components/workflow-run-card";
 import { WorkflowRunsError } from "@/app/(authenticated)/dashboard/_components/workflow-runs-error";
 import { WorkflowRunsLoading } from "@/app/(authenticated)/dashboard/_components/workflow-runs-loading";
@@ -15,9 +18,6 @@ import {
   SheetTrigger
 } from "@/components/ui/sheet";
 import { useWorkflowRuns } from "@/queries/workflow-run.query";
-import { Loader2, Play } from "lucide-react";
-import React from "react";
-import { useInView } from "react-intersection-observer";
 
 type WorkflowRunsSheetProps = Readonly<{
   repositoryName: string;
@@ -82,8 +82,7 @@ export const WorkflowRunsSheet = ({
             <p className="flex size-full items-center justify-center text-muted-foreground">
               No workflow runs found.
             </p>
-          }
-        >
+          }>
           <ScrollArea className="h-[calc(100vh-8rem)] w-full gap-8 pt-4 pr-4">
             <div className="grid grid-cols-1 gap-6">
               {data?.pages.map((page) =>

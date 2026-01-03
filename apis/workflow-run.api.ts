@@ -1,10 +1,10 @@
+import { AxiosError, HttpStatusCode } from "axios";
 import { axiosInstance } from "@/apis/base.api";
 import { WORKFLOW_RUNS_PER_PAGE } from "@/configs/constants";
 import type {
   GitHubWorkflowRun,
   GitHubWorkflowRunList
 } from "@/configs/github-api";
-import { AxiosError, HttpStatusCode } from "axios";
 
 export const getWorkflowRuns = async (
   owner: string,
@@ -16,7 +16,6 @@ export const getWorkflowRuns = async (
       `/repos/${owner}/${repo}/actions/runs`,
       {
         params: {
-          // biome-ignore lint/style/useNamingConvention: <explanation>
           per_page: WORKFLOW_RUNS_PER_PAGE,
           page
         }

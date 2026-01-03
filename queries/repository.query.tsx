@@ -1,7 +1,7 @@
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { getRepositories, getRepository } from "@/apis/repository.api";
 import { REPOSITORIES_PER_PAGE } from "@/configs/constants";
 import type { GitHubRepository } from "@/configs/github-api";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 export const useRepositories = () =>
   useInfiniteQuery<GitHubRepository[], Error>({

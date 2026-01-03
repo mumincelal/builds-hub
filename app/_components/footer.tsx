@@ -15,8 +15,7 @@ export const Footer = () => (
             All rights reserved by&nbsp;
             <Link
               href="https://linkedin.com/in/mumin-celal-pinar"
-              className="text-white underline decoration-red-500 decoration-wavy underline-offset-4"
-            >
+              className="text-white underline decoration-red-500 decoration-wavy underline-offset-4">
               Mümin Celal Pinar
             </Link>
           </span>

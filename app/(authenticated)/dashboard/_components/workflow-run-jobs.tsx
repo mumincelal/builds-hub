@@ -1,3 +1,5 @@
+import { Boxes } from "lucide-react";
+import React from "react";
 import { WorkflowRunStatus } from "@/app/(authenticated)/dashboard/_components/workflow-run-status";
 import {
   Accordion,
@@ -14,10 +16,8 @@ import {
   SheetTitle,
   SheetTrigger
 } from "@/components/ui/sheet";
-import { GitHubWorkflowRun } from "@/configs/github-api";
+import type { GitHubWorkflowRun } from "@/configs/github-api";
 import { useWorkflowRunJobs } from "@/queries/workflow-run-jobs.query";
-import { Boxes } from "lucide-react";
-import React from "react";
 
 type WorkflowRunJobsProps = Readonly<{
   owner: string;

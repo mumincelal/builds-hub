@@ -1,7 +1,7 @@
+import { Clock, Code, Scale } from "lucide-react";
 import { ConditionalShow } from "@/components/conditional-show";
 import { Badge } from "@/components/ui/badge";
 import { getRelativeTime } from "@/utils/date";
-import { Clock, Code, Scale } from "lucide-react";
 
 type RepositoryCardTagsProps = Readonly<{
   language: string | null;

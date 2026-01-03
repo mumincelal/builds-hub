@@ -1,9 +1,8 @@
 /** @type {import('postcss-load-config').Config} */
 const config = {
   plugins: {
-    tailwindcss: {}
+    "@tailwindcss/postcss": {}
   }
 };
 
-// biome-ignore lint/style/noDefaultExport: PostCSS
 export default config;

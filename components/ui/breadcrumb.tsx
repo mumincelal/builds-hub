@@ -1,7 +1,9 @@
-import { cn } from "@/lib/tailwind";
+// biome-ignore-all lint/a11y/useSemanticElements: false
+
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
 import React from "react";
+import { cn } from "@/lib/tailwind";
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
@@ -18,7 +20,7 @@ const BreadcrumbList = React.forwardRef<
   <ol
     ref={ref}
     className={cn(
-      "flex flex-wrap items-center gap-1.5 break-words text-muted-foreground text-sm sm:gap-2.5",
+      "flex flex-wrap items-center gap-1.5 wrap-break-word text-muted-foreground text-sm sm:gap-2.5",
       className
     )}
     {...props}
@@ -81,12 +83,10 @@ const BreadcrumbSeparator = ({
     role="presentation"
     aria-hidden="true"
     className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)}
-    {...props}
-  >
+    {...props}>
     {children ?? <ChevronRight />}
   </li>
 );
-// biome-ignore lint/nursery/noSecrets: <explanation>
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
 
 const BreadcrumbEllipsis = ({
@@ -97,13 +97,11 @@ const BreadcrumbEllipsis = ({
     role="presentation"
     aria-hidden="true"
     className={cn("flex h-9 w-9 items-center justify-center", className)}
-    {...props}
-  >
+    {...props}>
     <MoreHorizontal className="h-4 w-4" />
     <span className="sr-only">More</span>
   </span>
 );
-// biome-ignore lint/nursery/noSecrets: <explanation>
 BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";
 
 export {

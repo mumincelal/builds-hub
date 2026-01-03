@@ -1,3 +1,5 @@
+import { Clock, GitBranch } from "lucide-react";
+import Link from "next/link";
 import { WorkflowRunJobs } from "@/app/(authenticated)/dashboard/_components/workflow-run-jobs";
 import { WorkflowRunRerunJobs } from "@/app/(authenticated)/dashboard/_components/workflow-run-rerun-jobs";
 import { WorkflowRunStatus } from "@/app/(authenticated)/dashboard/_components/workflow-run-status";
@@ -8,10 +10,8 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
-import { GitHubWorkflowRun } from "@/configs/github-api";
+import type { GitHubWorkflowRun } from "@/configs/github-api";
 import { getRelativeTime } from "@/utils/date";
-import { Clock, GitBranch } from "lucide-react";
-import Link from "next/link";
 
 type WorkflowRunCardProps = Readonly<{
   workflowRun: GitHubWorkflowRun;
@@ -26,8 +26,7 @@ export const WorkflowRunCard = ({ workflowRun }: WorkflowRunCardProps) => (
             href={workflowRun.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 outline-none transition-colors hover:text-primary focus-visible:text-primary"
-          >
+            className="flex items-center gap-2 outline-hidden transition-colors hover:text-primary focus-visible:text-primary">
             <h3 className="truncate font-semibold text-xl">
               {workflowRun.name} #{workflowRun.run_number}
             </h3>

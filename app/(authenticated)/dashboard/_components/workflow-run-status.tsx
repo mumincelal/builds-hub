@@ -1,15 +1,18 @@
+// biome-ignore-all lint/style/useNamingConvention: false
+
+import { CheckCircle, CircleAlert, Clock, XCircle } from "lucide-react";
 import { ConditionalShow } from "@/components/conditional-show";
 import {
+  Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
 } from "@/components/ui/tooltip";
-import { Tooltip } from "@/components/ui/tooltip";
-import { GitHubWorkflowRun, GitHubWorkflowRunJob } from "@/configs/github-api";
+import type {
+  GitHubWorkflowRun,
+  GitHubWorkflowRunJob
+} from "@/configs/github-api";
 import { cn } from "@/lib/tailwind";
-import { CheckCircle, Clock } from "lucide-react";
-import { CircleAlert } from "lucide-react";
-import { XCircle } from "lucide-react";
 
 type WorkflowRunStatusProps = Readonly<{
   status: string;
@@ -46,7 +49,7 @@ export const WorkflowRunStatus = ({
       icon: CheckCircle,
       className: "text-green-500"
     },
-    // biome-ignore lint/style/useNamingConvention: <explanation>
+
     action_required: {
       label: "Action Required",
       icon: CircleAlert,
@@ -72,7 +75,6 @@ export const WorkflowRunStatus = ({
       icon: CheckCircle,
       className: "text-green-500"
     },
-    // biome-ignore lint/style/useNamingConvention: <explanation>
     timed_out: {
       label: "Timed Out",
       icon: XCircle,
@@ -83,7 +85,6 @@ export const WorkflowRunStatus = ({
       icon: Clock,
       className: "text-muted-foreground"
     },
-    // biome-ignore lint/style/useNamingConvention: <explanation>
     in_progress: {
       label: "In Progress",
       icon: Clock,
@@ -131,8 +132,7 @@ export const WorkflowRunStatus = ({
         <TooltipTrigger>
           <ConditionalShow
             when={conclusion}
-            fallback={<Clock className="size-4 text-muted-foreground" />}
-          >
+            fallback={<Clock className="size-4 text-muted-foreground" />}>
             <Icon className={cn("size-4", className)} />
           </ConditionalShow>
         </TooltipTrigger>

@@ -1,5 +1,8 @@
 "use client";
 
+import { LucideBoxes } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AppSidebarUser } from "@/components/app-sidebar-user";
 import {
   Sidebar,
@@ -12,9 +15,6 @@ import {
   SidebarRail
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/tailwind";
-import { LucideBoxes } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export type AppSidebarProps = Readonly<{
   menuItems: {
@@ -35,8 +35,7 @@ export const AppSidebar = ({ menuItems }: AppSidebarProps) => {
           <SidebarMenuItem>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
               <div className="flex cursor-pointer items-center justify-center gap-2 transition-opacity hover:opacity-90">
                 <LucideBoxes className="size-8 text-gray-600" />
                 <div className="flex items-baseline gap-1.5 text-2xl">
@@ -58,8 +57,7 @@ export const AppSidebar = ({ menuItems }: AppSidebarProps) => {
                     pathname.startsWith(item.url)
                 })}
                 tooltip={item.title}
-                asChild
-              >
+                asChild>
                 <Link href={item.url} passHref>
                   {item.icon}
                   <span>{item.title}</span>

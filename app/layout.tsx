@@ -1,9 +1,9 @@
-import { Providers } from "@/app/providers";
-import { cn } from "@/lib/tailwind";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Providers } from "@/app/providers";
+import { cn } from "@/lib/tailwind";
 import "./globals.css";
 
 const inter = Inter({
@@ -11,7 +11,6 @@ const inter = Inter({
   variable: "--font-inter"
 });
 
-// biome-ignore lint/nursery/useComponentExportOnlyModules: Next.js
 export const metadata: Metadata = {
   title: {
     template: "%s | Builds Hub",
@@ -38,5 +37,4 @@ const RootLayout = ({
   </html>
 );
 
-// biome-ignore lint/style/noDefaultExport: Next.js
 export default RootLayout;

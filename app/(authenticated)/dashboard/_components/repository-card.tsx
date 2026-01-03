@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader
 } from "@/components/ui/card";
-import { GitHubRepository } from "@/configs/github-api";
+import type { GitHubRepository } from "@/configs/github-api";
 
 type RepositoryCardProps = Readonly<{
   repository: GitHubRepository;

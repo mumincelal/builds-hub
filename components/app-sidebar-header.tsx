@@ -1,5 +1,6 @@
 "use client";
 
+import { useParams, usePathname } from "next/navigation";
 import { ConditionalShow } from "@/components/conditional-show";
 import {
   Breadcrumb,
@@ -11,7 +12,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { useParams, usePathname } from "next/navigation";
 
 export type AppSidebarHeaderProps = Readonly<{
   menuItems: {
